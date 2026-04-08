@@ -1,8 +1,7 @@
+import { CallForPapers } from '../components/pages/cfp/CallForPapers'
 import { PageHero } from '../components/common/PageHero'
-import Container from '../components/common/Container'
-import { Pad } from '../components/common/Pad'
 import tagGreen from '../assets/img/tag-green.svg'
-
+ 
 export function Cfp() {
   return (
     <>
@@ -23,20 +22,8 @@ export function Cfp() {
           </>
         }
       />
-
-      <section className="py-[100px] max-[991px]:py-[60px]">
-        <Pad>
-          <Container>
-            <h2 className="mb-[20px] font-heading text-[36px] font-bold leading-[115%] text-primary max-[991px]:text-[28px]">
-              Submission details
-            </h2>
-            <p className="text-[18px] text-body max-[991px]:text-[16px]">
-              Replace this section with your CFP tracks, important dates, and submission steps.
-            </p>
-          </Container>
-        </Pad>
-      </section>
+      <CallForPapers />
     </>
   )
 }
-
+ 

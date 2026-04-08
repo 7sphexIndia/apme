@@ -19,7 +19,7 @@ export function ButtonLink({
       <Link
         to={to}
         className={[
-          'group inline-flex items-center gap-[7px] text-[16px] font-semibold text-secondary no-underline transition-colors duration-300 hover:text-primary',
+          'group inline-flex items-center gap-[7px] text-[16px] font-regular text-secondary no-underline transition-colors duration-300 hover:text-primary',
           className,
         ]
           .filter(Boolean)

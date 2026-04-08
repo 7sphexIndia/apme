@@ -2,12 +2,13 @@ import { ButtonLink } from '../../common/ButtonLink'
 import Container from '../../common/Container'
 import { Pad } from '../../common/Pad'
 import DarkIconTitle from '../../common/DarkIconTitle'
+import { Reveal } from '../../common/Reveal'
 import tagGreen from '../../../assets/img/tag-green.svg'
 import heroVideo from '../../../assets/video/hero-video.mp4'
 
 export function HeroSection() {
   return (
-    <section className="relative flex h-screen max-h-[100svh] pt-[144px] items-center">
+    <section className="relative flex h-[110svh] pt-[144px] items-center drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
       <div className="absolute left-0 top-0 -z-20 h-full w-full overflow-hidden">
         <video autoPlay muted loop playsInline className="h-full w-full object-cover">
           <source src={heroVideo} type="video/mp4" />
@@ -17,7 +18,7 @@ export function HeroSection() {
 
       <Pad className="flex h-full w-full items-center text-white">
         <Container className="flex h-full items-center">
-          <div className="flex h-full w-full items-center justify-between gap-10 pb-[140px] max-[991px]:pb-[100px]">
+          <Reveal className="flex h-full w-full items-center justify-between gap-10 pb-[140px] max-[991px]:pb-[100px]">
             <div className="w-full max-w-[808px] pt-[3vw]">
               <DarkIconTitle
                 iconSrc={tagGreen}
@@ -26,7 +27,7 @@ export function HeroSection() {
                 Now Accepting Submissions - Dubai, UAE
               </DarkIconTitle>
 
-              <h1 className="my-[30px] font-heading text-[66px] font-bold leading-[115%] max-[991px]:text-[40px]">
+              <h1 className="my-[30px] font-heading text-[66px] font-bold leading-[77px] max-[991px]:text-[40px]">
                 International Conference on Applied Physics, Mathematics &amp; Energy
               </h1>
               <p className="mb-[40px] max-w-[588px] text-[18px] max-[991px]:text-[16px]">
@@ -34,7 +35,7 @@ export function HeroSection() {
                 from 60+ nations in the heart of Dubai.
               </p>
 
-              <div className="mt-2 flex flex-wrap items-center gap-3">
+              <div className="mt-2 flex flex-wrap items-center gap-4">
                 <ButtonLink
                   to="/contact"
                   variant="primary"
@@ -87,11 +88,11 @@ export function HeroSection() {
                 </svg>
               </div>
             </div>
-          </div>
+          </Reveal>
         </Container>
       </Pad>
-      <div className="absolute bottom-0 left-0 right-0 z-20 overflow-hidden border-t border-white/10 bg-black/20 backdrop-blur-sm py-8 max-[767px]:py-[20px]">
-        <div className="flex animate-scroll-loop items-center gap-3 will-change-transform max-[767px]:animate-scroll-loop-fast lg:gap-5">
+      <div className="absolute bottom-0 left-0 right-0 z-20 overflow-hidden border-t border-primary bg-primary/30 py-8 max-[767px]:py-[20px]">
+        <div className="flex animate-scroll-loop items-center gap-[50px] will-change-transform max-[767px]:animate-scroll-loop-fast">
           <ScrollingGroup items={items} ariaHidden={false} />
           <ScrollingGroup items={items} ariaHidden />
         </div>
@@ -121,7 +122,7 @@ function ScrollingGroup({
 }) {
   return (
     <div
-      className="flex flex-shrink-0 items-center gap-[25px] lg:gap-[50px]"
+      className="flex flex-shrink-0 items-center gap-[50px]"
       aria-hidden={ariaHidden || undefined}
     >
       {items.map((item, idx) => (
@@ -133,13 +134,13 @@ function ScrollingGroup({
 
 function FragmentItem({ item, showDot }: { item: string; showDot: boolean }) {
   return (
-    <span className="inline-flex items-center gap-[25px] lg:gap-[50px]">
+    <span className="inline-flex items-center gap-[50px]">
       {showDot ? (
-        <span className="text-[14px] text-white/40" aria-hidden="true">
+        <span className="text-[14px] font-semibold tracking-[0.011em] text-white" aria-hidden="true">
           ◎
         </span>
       ) : null}
-      <span className="whitespace-nowrap text-[20px] font-semibold leading-4 text-white max-[767px]:text-[16px]">
+      <span className="whitespace-nowrap text-[22px] font-semibold tracking-[0.011em] leading-4 text-white max-[767px]:text-[18px]">
         {item}
       </span>
     </span>

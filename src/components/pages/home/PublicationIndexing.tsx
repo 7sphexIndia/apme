@@ -1,84 +1,73 @@
-import { Link } from 'react-router-dom'
 import Container from '../../common/Container'
 import DarkIconTitle from '../../common/DarkIconTitle'
 import { Pad } from '../../common/Pad'
-import publicationImg from '../../../assets/img/publication-img.png'
+import { Reveal } from '../../common/Reveal'
+import homePublicationTag from '../../../assets/img/home-publication.svg'
+import publication1 from '../../../assets/img/publication-1.svg'
+import publication2 from '../../../assets/img/publication-2.svg'
+import publication3 from '../../../assets/img/publication-3.svg'
+import publication4 from '../../../assets/img/publication-4.svg'
+import publication5 from '../../../assets/img/publication-5.svg'
+import publication6 from '../../../assets/img/publication-6.svg'
 
-const INDEXES = [
-  'SCOPUS',
-  'Web of Science',
-  'Springer Nature',
-  'IEEE Xplore',
-  'Ei Compendex',
-  'Google Scholar',
-] as const
+const PUBLICATION_LOGOS = [
+  { img: publication1, alt: 'Scopus' },
+  { img: publication2, alt: 'EI Compendex' },
+  { img: publication3, alt: 'IET Inspec' },
+  { img: publication4, alt: 'WTI Frankfurt' },
+  { img: publication5, alt: 'zbMATH Open' },
+  { img: publication6, alt: 'SCImago' },
+]
 
 export function PublicationIndexing() {
   return (
     <section className="bg-white py-[100px] max-[991px]:py-[60px]">
       <Pad>
         <Container>
-          <header className="mb-[60px] text-center max-[991px]:mb-10">
-            <div className="mb-[30px] flex justify-center">
-              <DarkIconTitle>Publication & Indexing</DarkIconTitle>
-            </div>
+          <div className="flex flex-col items-center text-center">
+            <Reveal className="mb-[30px] flex justify-center">
+              <DarkIconTitle iconSrc={homePublicationTag}>
+                PUBLICATION & INDEXING
+              </DarkIconTitle>
+            </Reveal>
 
-            <h2 className="font-heading text-[36px] font-bold leading-[115%] text-primary max-[991px]:text-[28px]">
-              Your Research, <span className="text-secondary">Indexed Globally</span>
-            </h2>
-          </header>
+            <Reveal className="mb-10 md:mb-5">
+              <h2 className="font-heading text-[36px] font-bold leading-[46px] text-primary max-[991px]:text-[32px]">
+                Your Research, Published & <span className="text-secondary">Indexed Globally</span>
+              </h2>
+            </Reveal>
 
-          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-12">
-            <div className="overflow-hidden rounded-[10px] max-[991px]:max-h-[446px] lg:max-h-none">
-              <img
-                src={publicationImg}
-                alt="Conference hall with audience and speakers on stage"
-                className="h-full min-h-[200px] w-full object-cover lg:min-h-[446px]"
-                loading="lazy"
-              />
-            </div>
-
-            <div>
-              <p className="mb-8 text-[18px] leading-relaxed text-body max-[991px]:mb-6 max-[991px]:text-[16px]">
+            <Reveal className="max-w-[800px]">
+              <p className="text-[18px] text-body max-[991px]:text-[16px]">
                 All accepted and presented papers will be considered for publication in
-                internationally indexed journals and proceedings.
+                internationally indexed proceedings.
               </p>
+            </Reveal>
 
-              <div className="grid grid-cols-2 gap-4">
-                {INDEXES.map((name) => (
-                  <div
-                    key={name}
-                    className="rounded-md bg-primary px-3 py-3 text-center text-[13px] font-semibold leading-tight text-white sm:px-4 sm:text-[14px]"
-                  >
-                    {name}
-                  </div>
-                ))}
-              </div>
+            <div className="w-full border-t border-stroke !my-[60px]"></div>
 
-              <nav
-                className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 max-[991px]:mt-6 max-[991px]:flex-col max-[991px]:items-start max-[991px]:gap-y-2"
-                aria-label="Publication highlights"
-              >
-                <Link
-                  to="/cfp"
-                  className="text-[16px] font-medium text-secondary underline underline-offset-[3px] transition-colors hover:text-primary"
+            <Reveal className="mb-10">
+              <p className="text-[16px] font-regular text-body/80">
+                Indexed by SCOPUS, EI Compendex, INSPEC, WTI Frankfurt eG, zbMATH, SCImago. 
+                All books published in the series are submitted for consideration in the Web of Science**
+              </p>
+            </Reveal>
+
+            <Reveal className="grid w-full grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6 lg:gap-5">
+              {PUBLICATION_LOGOS.map((logo, idx) => (
+                <div
+                  key={idx}
+                  className="flex h-[100px] items-center justify-center rounded-[10px] bg-white shadow-none transition-shadow duration-300 hover:shadow-sm"
                 >
-                  Double-Blind Peer Review
-                </Link>
-                <Link
-                  to="/publication"
-                  className="text-[16px] font-medium text-secondary underline underline-offset-[3px] transition-colors hover:text-primary"
-                >
-                  Best Paper Award — Each Track
-                </Link>
-                <Link
-                  to="/publication"
-                  className="text-[16px] font-medium text-secondary underline underline-offset-[3px] transition-colors hover:text-primary"
-                >
-                  Digital Proceedings for All
-                </Link>
-              </nav>
-            </div>
+                  <img
+                    src={logo.img}
+                    alt={logo.alt}
+                    className="h-full w-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </Reveal>
           </div>
         </Container>
       </Pad>

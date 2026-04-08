@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import Container from './Container'
 import { Pad } from './Pad'
+import { Reveal } from './Reveal'
 
 export type PageHeroBadge = {
   text: string
@@ -39,7 +40,7 @@ export function PageHero({
   return (
     <section
       className={[
-        'relative flex h-screen items-center',
+        'relative flex h-screen items-center pt-[114px]',
         className,
       ]
         .filter(Boolean)
@@ -49,7 +50,7 @@ export function PageHero({
 
       <Pad className="flex h-full w-full items-center text-white">
         <Container className="flex h-full items-center">
-          <div
+          <Reveal
             className={[
               'flex h-full w-full items-center gap-10 pb-10',
               isCenter ? 'justify-center' : 'justify-between',
@@ -64,6 +65,7 @@ export function PageHero({
               {badge ? (
                 <div
                   className={[
+                    'animate-float-y',
                     'inline-flex items-center gap-2 rounded-[10px] border border-white/15 bg-white/10 px-3 py-2 text-[14px]',
                     isCenter ? 'mx-auto' : '',
                   ]
@@ -82,7 +84,7 @@ export function PageHero({
                 </div>
               ) : null}
 
-              <h1 className="my-[30px] font-heading text-[66px] font-bold leading-[115%] max-[991px]:text-[40px]">
+              <h1 className="my-[30px] font-heading text-[66px] font-bold leading-[77px] max-[991px]:text-[40px]">
                 {title}
               </h1>
 
@@ -118,7 +120,7 @@ export function PageHero({
                 {rightSlot}
               </div>
             ) : null}
-          </div>
+          </Reveal>
         </Container>
       </Pad>
     </section>

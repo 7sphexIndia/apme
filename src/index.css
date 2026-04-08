@@ -57,4 +57,52 @@
   }
 }
 
+@layer components {
+  /* Reusable hover card: lift + image zoom + bottom line grow */
+  .hover-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid rgb(var(--border-rgb) / 1);
+    background: rgb(255 255 255 / 1);
+    box-shadow: none;
+    transform: translate3d(0, 0, 0);
+    transition:
+      transform 300ms ease-out,
+      box-shadow 300ms ease-out;
+  }
+
+  .hover-card::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 5px;
+    width: 0;
+    background: rgb(var(--secondary-rgb) / 1);
+    transition: width 700ms ease-out;
+  }
+
+  .hover-card:hover {
+    transform: translate3d(0, -6px, 0);
+    box-shadow: 0 14px 40px -8px rgb(11 31 59 / 10%);
+  }
+
+  .hover-card:hover::after {
+    width: 100%;
+  }
+
+  .hover-card-media {
+    transform: scale(1);
+    transition: transform 700ms ease-out;
+    will-change: transform;
+  }
+
+  .hover-card:hover .hover-card-media {
+    transform: scale(1.06);
+  }
+}
+
 /* No legacy CSS imports: Tailwind-only styling lives in TSX classes. */
