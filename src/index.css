@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --white-color: #ffffff;
+    --black-color: #000000;
+    --primary-color: #0b1f3b;
+    --secondary-color: #0f7b6c;
+    --light-bg-color: #f5f7fa;
+    --border-color: #e7f2f1;
+    --body-text-color: #1c1c1c;
+    --mini-text-color: #333333;
+    --orange-color: #f4a261;
+    /* RGB channels for Tailwind opacity utilities (e.g. bg-primary/70) */
+    --white-rgb: 255 255 255;
+    --black-rgb: 0 0 0;
+    --primary-rgb: 11 31 59;
+    --secondary-rgb: 15 123 108;
+    --light-bg-rgb: 245 247 250;
+    --border-rgb: 231 242 241;
+    --body-text-rgb: 28 28 28;
+    --mini-text-rgb: 51 51 51;
+    --orange-rgb: 244 162 97;
+    --heading-font: 'Plus Jakarta Sans', sans-serif;
+    --body-font: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--body-font);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    line-height: 115%;
+  }
+
+  h1 {
+    font-size: 66px;
+    line-height: 77px;
+    font-weight: 700;
+    text-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+  }
+}
+
+/* No legacy CSS imports: Tailwind-only styling lives in TSX classes. */
