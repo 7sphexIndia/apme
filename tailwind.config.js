@@ -13,6 +13,7 @@ export default {
         body: 'rgb(var(--body-text-rgb) / <alpha-value>)',
         mini: 'rgb(var(--mini-text-rgb) / <alpha-value>)',
         orange: 'rgb(var(--orange-rgb) / <alpha-value>)',
+        boxIcon: 'rgb(var(--box-icon-rgb) / <alpha-value>)',
       },
       fontFamily: {
         heading: 'var(--heading-font)',

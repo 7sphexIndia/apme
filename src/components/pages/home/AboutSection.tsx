@@ -4,7 +4,7 @@ import DarkIconTitle from '../../common/DarkIconTitle'
 import { Pad } from '../../common/Pad'
 import { Reveal } from '../../common/Reveal'
 import aboutImage from '../../../assets/img/about-img.webp'
-import tagGreen from '../../../assets/img/tag-green.svg'
+import tagGreen from '../../../assets/img/green-dot.svg'
 import pillarsImg1 from '../../../assets/img/pillars-img-1.webp'
 import pillarsImg2 from '../../../assets/img/pillars-img-2.webp'
 import pillarsImg3 from '../../../assets/img/pillars-img-3.webp'
@@ -57,11 +57,11 @@ export function AboutSection() {
             </div>
 
             <div className="mt-[30px] lg:mt-0">
-              <DarkIconTitle
-                iconSrc={tagGreen}
-              >
-                About APME 2026
-              </DarkIconTitle>
+              <Reveal className="mb-6">
+                <DarkIconTitle iconSrc={tagGreen} animate={true} iconSize={11}>
+                  About APME 2026
+                </DarkIconTitle>
+              </Reveal>
 
               <h2 className="mt-[30px] font-heading text-[40px] font-extrabold leading-[46px] text-primary max-[991px]:text-[28px]">
                 A Global Forum for the <br /> Sciences That{' '}

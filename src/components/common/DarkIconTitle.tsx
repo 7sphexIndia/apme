@@ -6,6 +6,8 @@ type DarkIconTitleProps = {
   iconSrc?: string
   iconAlt?: string
   className?: string
+  animate?: boolean
+  iconSize?: number
 }
 
 export default function DarkIconTitle({
@@ -13,6 +15,8 @@ export default function DarkIconTitle({
   iconSrc,
   iconAlt,
   className = '',
+  animate = false,
+  iconSize = 17,
 }: DarkIconTitleProps) {
   const resolvedIcon = iconSrc ?? defaultIcon
 
@@ -28,13 +32,19 @@ export default function DarkIconTitle({
         .filter(Boolean)
         .join(' ')}
     >
-      <img
-        src={resolvedIcon}
-        alt={iconAlt ?? ''}
-        aria-hidden={iconAlt ? undefined : true}
-        className="h-[17px] w-[20px] object-contain"
-      />
-      <span>{children}</span>
+      <div className="relative flex items-center justify-center">
+        {animate && (
+          <div className="absolute h-full w-full animate-pulse-dot rounded-full" />
+        )}
+        <img
+          src={resolvedIcon}
+          alt={iconAlt ?? ''}
+          aria-hidden={iconAlt ? undefined : true}
+          style={{ height: `${iconSize}px`, width: `${iconSize}px` }}
+          className="relative z-10 object-contain"
+        />
+      </div>
+      <span className="relative z-10">{children}</span>
     </div>
   )
 }

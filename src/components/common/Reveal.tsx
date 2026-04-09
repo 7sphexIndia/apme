@@ -7,12 +7,14 @@ export function Reveal({
   once = true,
   threshold = 0.15,
   rootMargin = '0px 0px -10% 0px',
+  delay = 0,
 }: {
   children: ReactNode
   className?: string
   once?: boolean
   threshold?: number
   rootMargin?: string
+  delay?: number
 }) {
   const ref = useRef<HTMLDivElement | null>(null)
   const [visible, setVisible] = useState(false)
@@ -48,6 +50,7 @@ export function Reveal({
   return (
     <div
       ref={ref}
+      style={{ transitionDelay: `${delay}s` }}
       className={[
         'will-change-transform',
         'transition-[opacity,transform] duration-700 ease-out',

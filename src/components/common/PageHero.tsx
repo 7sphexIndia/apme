@@ -77,7 +77,7 @@ export function PageHero({
                       src={badge.iconSrc}
                       alt={badge.iconAlt ?? ''}
                       aria-hidden={badge.iconAlt ? undefined : true}
-                      className="h-[17px] w-[20px] object-contain"
+                      className="h-[11px] w-[11px] object-contain"
                     />
                   ) : null}
                   <span>{badge.text}</span>

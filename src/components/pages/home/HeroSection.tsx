@@ -3,7 +3,7 @@ import Container from '../../common/Container'
 import { Pad } from '../../common/Pad'
 import DarkIconTitle from '../../common/DarkIconTitle'
 import { Reveal } from '../../common/Reveal'
-import tagGreen from '../../../assets/img/tag-green.svg'
+import tagGreen from '../../../assets/img/green-dot.svg'
 import heroVideo from '../../../assets/video/hero-video.mp4'
 
 export function HeroSection() {
@@ -20,12 +20,13 @@ export function HeroSection() {
         <Container className="flex h-full items-center">
           <Reveal className="flex h-full w-full items-center justify-between gap-10 pb-[140px] max-[991px]:pb-[100px]">
             <div className="w-full max-w-[808px] pt-[3vw]">
-              <DarkIconTitle
-                iconSrc={tagGreen}
-                className="animate-float-y border-white/15 bg-white/10 !text-[#F5F7FA]"
-              >
-                Now Accepting Submissions - Dubai, UAE
-              </DarkIconTitle>
+              <Reveal className="mb-6">
+                <DarkIconTitle iconSrc={tagGreen} animate={true} iconSize={11}
+                  className="animate-float-y border-white/15 bg-white/10 !text-[#F5F7FA]"
+                >
+                  Now Accepting Submissions - Dubai, UAE
+                </DarkIconTitle>
+              </Reveal>
 
               <h1 className="my-[30px] font-heading text-[66px] font-bold leading-[77px] max-[991px]:text-[40px]">
                 International Conference on Applied Physics, Mathematics &amp; Energy
