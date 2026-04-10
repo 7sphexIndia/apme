@@ -83,6 +83,10 @@
     background: rgb(var(--secondary-rgb) / 1);
     transition: width 700ms ease-out;
   }
+  
+  .red-hover-card.hover-card::after{
+    background: rgb(255, 0, 0);
+  }
 
   .hover-card:hover {
     transform: translate3d(0, -6px, 0);

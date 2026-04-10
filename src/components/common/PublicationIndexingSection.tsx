@@ -59,7 +59,13 @@ export function PublicationIndexingSection({
                   key={`${logo.alt}-${idx}`}
                   className="flex h-[100px] items-center justify-center rounded-[10px] bg-white shadow-none transition-shadow duration-300 hover:shadow-sm"
                 >
-                  <img src={logo.img} alt={logo.alt} className="h-full w-full object-contain" loading="lazy" />
+                  <img
+                    src={logo.img}
+                    alt={logo.alt}
+                    className="h-full w-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               ))}
             </Reveal>

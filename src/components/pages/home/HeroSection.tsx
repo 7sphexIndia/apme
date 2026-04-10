@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { ButtonLink } from '../../common/ButtonLink'
 import Container from '../../common/Container'
 import { Pad } from '../../common/Pad'
@@ -6,13 +7,78 @@ import { Reveal } from '../../common/Reveal'
 import tagGreen from '../../../assets/img/green-dot.svg'
 import heroVideo from '../../../assets/video/hero-video.mp4'
 
-export function HeroSection() {
+export function HeroSection({
+  badgeText = 'Now Accepting Submissions - Dubai, UAE',
+  badgeIconSrc = tagGreen,
+  badgeAnimate = true,
+  badgeIconSize = 11,
+}: {
+  badgeText?: string
+  badgeIconSrc?: string
+  badgeAnimate?: boolean
+  badgeIconSize?: number
+}) {
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
+
+  const shouldSkipVideo = useMemo(() => {
+    // Respect reduced motion and data-saver connections.
+    if (typeof window === 'undefined') return true
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches) return true
+    const conn = (navigator as any).connection
+    if (conn?.saveData) return true
+    const effectiveType = String(conn?.effectiveType ?? '')
+    if (effectiveType.includes('2g') || effectiveType.includes('slow-2g')) return true
+    return false
+  }, [])
+
+  useEffect(() => {
+    if (shouldSkipVideo) return
+    const el = containerRef.current
+    if (!el) return
+
+    // If IO isn't available, load right away.
+    if (typeof IntersectionObserver === 'undefined') {
+      setShouldLoadVideo(true)
+      return
+    }
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0]
+        if (entry?.isIntersecting) {
+          setShouldLoadVideo(true)
+          obs.disconnect()
+        }
+      },
+      { threshold: 0.1 },
+    )
+
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [shouldSkipVideo])
+
   return (
     <section className="relative flex h-[110svh] pt-[144px] items-center drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
       <div className="absolute left-0 top-0 -z-20 h-full w-full overflow-hidden">
-        <video autoPlay muted loop playsInline className="h-full w-full object-cover">
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+        <div
+          ref={containerRef}
+          className="h-full w-full bg-primary"
+          aria-hidden="true"
+        >
+          {shouldLoadVideo ? (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="h-full w-full object-cover"
+            >
+              <source src={heroVideo} type="video/mp4" />
+            </video>
+          ) : null}
+        </div>
       </div>
       <div className="absolute left-0 top-0 -z-10 h-full w-full bg-primary/70" />
 
@@ -21,10 +87,10 @@ export function HeroSection() {
           <Reveal className="flex h-full w-full items-center justify-between gap-10 pb-[140px] max-[991px]:pb-[100px]">
             <div className="w-full max-w-[808px] pt-[3vw]">
               <Reveal className="mb-6">
-                <DarkIconTitle iconSrc={tagGreen} animate={true} iconSize={11}
+                <DarkIconTitle iconSrc={badgeIconSrc} animate={badgeAnimate} iconSize={badgeIconSize}
                   className="animate-float-y border-white/15 bg-white/10 !text-[#F5F7FA]"
                 >
-                  Now Accepting Submissions - Dubai, UAE
+                  {badgeText}
                 </DarkIconTitle>
               </Reveal>
 

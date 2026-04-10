@@ -56,6 +56,7 @@ export function Navbar() {
               <img
                 src="/assets/img/logo.svg"
                 alt="APME Logo"
+                decoding="async"
                 className={[
                   'h-[50px] w-auto object-contain transition-all duration-300',
                   scrolled ? 'brightness-0' : '',

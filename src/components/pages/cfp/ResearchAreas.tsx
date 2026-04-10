@@ -270,6 +270,8 @@ export function ResearchAreas() {
                         alt=""
                         aria-hidden="true"
                         className="mt-[3px] h-[18px] w-[18px] object-contain"
+                        loading="lazy"
+                        decoding="async"
                       />
                       <span>{li}</span>
                     </li>

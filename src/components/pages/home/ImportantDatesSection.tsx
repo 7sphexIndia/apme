@@ -58,11 +58,11 @@ export function ImportantDatesSection() {
       <Pad>
         <Container>
           <div className="flex flex-col items-center text-center">
-            <Reveal className="mb-6">
+            <Reveal className="mb-[30px]">
               <DarkIconTitle iconSrc={calenderIcon}>Key Milestones</DarkIconTitle>
             </Reveal>
-            <Reveal className="mb-[80px]">
-              <h2 className="font-heading text-[40px] font-extrabold text-primary max-[767px]:text-[32px]">
+            <Reveal className="mb-[76px]">
+              <h2 className="font-heading text-[36px] font-bold leading-[46px] text-primary max-[767px]:text-[32px]">
                 Important <span className="text-secondary">Dates</span>
               </h2>
             </Reveal>
@@ -70,11 +70,11 @@ export function ImportantDatesSection() {
 
           <div className="relative">
             {/* Faded Horizontal Line */}
-            <div 
-              className="absolute top-[86px] left-0 right-0 h-[2px] bg-secondary/30 hidden md:block"
-              style={{ 
-                maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
-                WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
+            <div
+              className="absolute top-[93px] left-0 right-0 h-[2px] hidden md:block"
+              style={{
+                background:
+                  'linear-gradient(90deg, #FFFFFF 0%, #0F786C 3%, #0F786C 97%, #FFFFFF 100%)',
               }}
             />
             
@@ -89,17 +89,17 @@ export function ImportantDatesSection() {
                   </div>
                   
                   {/* Vertical Connector Line */}
-                  <div className="h-[26px] w-[2px] bg-secondary/30 hidden md:block" />
+                  <div className="h-[35px] w-[1px] bg-secondary hidden md:block" />
                   
                   {/* Small Hollow Node Circle on the horizontal line */}
-                  <div className="relative z-10 h-[10px] w-[10px] rounded-full border-2 border-secondary bg-white hidden md:block -mt-[6px] mb-6" />
+                  <div className="relative z-10 h-[10px] w-[10px] rounded-full border-2 border-secondary bg-white hidden md:block -mt-[6px] mb-10" />
                   
                   {/* Text Content */}
                   <div className="mt-4 md:mt-0">
-                    <h3 className="mb-2 text-xl font-bold text-primary max-[767px]:text-lg">
+                    <h3 className="mb-[14px] text-[22px] font-bold text-secondary max-[767px]:text-lg">
                       {milestone.date}
                     </h3>
-                    <p className="text-[13px] font-bold uppercase tracking-widest text-primary/60 max-[767px]:text-[11px]">
+                    <p className="text-[16px] font-regular uppercase text-primary max-[767px]:text-[11px]">
                       {milestone.label}
                     </p>
                   </div>

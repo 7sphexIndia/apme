@@ -53,6 +53,8 @@ export function AboutSection() {
                 src={aboutImage}
                 alt="Conference audience and keynote presentation"
                 className="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -96,7 +98,7 @@ export function AboutSection() {
             {cards.map((card) => (
               <article
                 key={card.title}
-                className="hover-card p-[24px]"
+                className="border border-stroke rounded-[10px] bg-white hover-card p-[24px]"
               >
                 <div className="mb-[30px] overflow-hidden rounded-[4px]">
                   <img
@@ -104,6 +106,7 @@ export function AboutSection() {
                     alt={card.imageAlt}
                     className="hover-card-media aspect-[4/3] w-full object-cover"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
 

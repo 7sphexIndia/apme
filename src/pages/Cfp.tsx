@@ -12,6 +12,9 @@ import publication3 from '../assets/img/publication-3.svg'
 import publication4 from '../assets/img/publication-4.svg'
 import publication5 from '../assets/img/publication-5.svg'
 import publication6 from '../assets/img/publication-6.svg'
+import { Resources } from '../components/pages/cfp/Resources'
+import ctaVideo from '../assets/video/cta-video.mp4'
+import CTA from '../components/common/CTA'
 
 const HOME_PUBLICATION_LOGOS = [
   { img: publication1, alt: 'Scopus' },
@@ -32,6 +35,8 @@ export function Cfp() {
         badge={{
           text: 'DUBAI, UAE • NOV 15–17, 2026',
           iconSrc: tagGreen,
+          animate: true,
+          iconSize: 11,
         }}
         title={<>Call for Papers</>}
         subtitle={
@@ -66,6 +71,19 @@ export function Cfp() {
         }
         logos={HOME_PUBLICATION_LOGOS}
       />
+      <Resources />
+      <CTA
+        className="bg-white py-[100px]"
+        variant="single"
+        tagText="READY TO CONTRIBUTE?"
+        heading="Submit Your Research Today"
+        description="Join leading researchers from around the world at APME 2026. Share your innovative work and connect with the scientific community."
+        videoSrc={ctaVideo}
+        button={{ label: 'Submit Paper Now', to: '/contact' 
+          
+        }}
+      />
+      
     </>
   )
 }

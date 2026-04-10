@@ -4,6 +4,8 @@ import { Reveal } from '../../common/Reveal'
 import DarkIconTitle from '../../common/DarkIconTitle'
 import greenTick from '../../../assets/img/green-tick.svg'
 import whiteTick from '../../../assets/img/white-tick.svg'
+import profileIcon from '../../../assets/img/profile.svg'
+
 
 const tiers = [
   {
@@ -56,24 +58,22 @@ const tiers = [
 
 export function JoinSection() {
   return (
-    <section className="py-[120px] bg-light-bg max-[991px]:py-[60px]">
+    <section className="py-[80px] bg-light-bg max-[991px]:py-[50px]">
       <Pad>
         <Container>
           <div className="flex flex-col items-center text-center">
-            <Reveal className="mb-6">
-              <DarkIconTitle 
-                iconSrc={`data:image/svg+xml;base64,${btoa('<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%230F7B6C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>')}`}
-              >
-                SECURE YOUR PLACE
-              </DarkIconTitle>
+            <Reveal className="mb-[30px]">
+
+              <DarkIconTitle iconSrc={profileIcon}>SECURE YOUR PLACE</DarkIconTitle>
+
             </Reveal>
-            <Reveal className="mb-6">
-              <h2 className="font-heading text-[40px] font-extrabold text-primary max-[767px]:text-[32px]">
+            <Reveal className="mb-10">
+              <h2 className="font-heading text-[36px] leading-[46px] font-bold text-primary max-[767px]:text-[32px]">
                 Join APME 2026 in <span className="text-secondary">Dubai</span>
               </h2>
             </Reveal>
             <Reveal className="mb-[60px] max-w-[600px]">
-              <p className="text-lg text-body/70">
+              <p className="text-[18px] text-body">
                 2000+ researchers & innovators from 60+ nations. Dubai awaits.
               </p>
             </Reveal>
@@ -83,48 +83,56 @@ export function JoinSection() {
             {tiers.map((tier, idx) => (
               <Reveal key={idx} delay={idx * 0.1} className="h-full">
                 <div 
-                  className={`relative flex h-full flex-col rounded-[10px] p-[40px] transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.03)]
+                  className={`relative flex h-full flex-col rounded-[10px] p-[50px] transition-all duration-300
                     ${tier.highlighted 
-                      ? 'bg-secondary text-white lg:-mt-4 lg:mb-4 shadow-[0_20px_40px_rgba(15,123,108,0.15)]' 
+                      ? 'bg-secondary text-white scale-[102%] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]' 
                       : 'bg-white text-primary hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]'
                     }`}
                 >
                   {tier.badge && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-[8px] bg-white px-5 py-1.5 text-[11px] font-bold tracking-widest text-secondary shadow-md min-w-[140px] text-center">
+                    <div className="absolute -top-0.5 left-1/2 -translate-x-1/2 rounded-b-[8px] bg-white px-5 py-1.5 text-[11px] font-bold tracking-widest text-secondary min-w-[140px] text-center">
                       {tier.badge}
                     </div>
                   )}
 
-                  <div className="mb-8 border-b border-current/20 pb-8 text-left">
-                    <span className={`text-[15px] font-medium opacity-80 italic`}>{tier.type}</span>
-                    <h3 className="mt-2 text-[26px] font-extrabold leading-tight">
+                  <div className="mb-[30px] border-b-[2px] border-stroke pb-8 text-left">
+                    <span
+                      className={`text-[14px] text-mini italic tracking-[-1%] ${tier.highlighted ? 'text-white' : ''}`}
+                    >
+                      {tier.type}
+                    </span>
+                    <h3 className={`mt-[14px] text-[22px] font-bold leading-tight ${tier.highlighted ? 'text-white' : ''}`}>
                       {tier.name}
                     </h3>
                   </div>
 
-                  <ul className="mb-10 space-y-5 flex-grow text-left">
+                  <ul className="mb-[30px] space-y-3 flex-grow text-left">
                     {tier.features.map((feature, fIdx) => (
-                      <li key={fIdx} className="flex items-start gap-4 text-[16px] leading-tight">
+                      <li key={fIdx} className="flex items-start gap-[7px] text-[16px] leading-tight">
                         <img 
                           src={tier.highlighted ? whiteTick : greenTick} 
                           alt="check" 
-                          className="mt-0.5 h-5 w-5 shrink-0" 
+                          className="mt-0.5 h-[18px] w-[18px] shrink-0" 
+                          loading="lazy"
+                          decoding="async"
                         />
-                        <span className="opacity-95">{feature}</span>
+                        <span className={tier.highlighted ? 'text-white' : 'text-body'}>{feature}</span>
                       </li>
                     ))}
                   </ul>
 
                   <div className="mt-auto flex flex-col items-center">
-                    <button className={`w-full rounded-full py-4 text-lg font-bold transition-all
+                    <button className={`w-full rounded-full py-[20px] max-h-[54px] flex items-center justify-center text-[16px] font-semibold transition-colors duration-300 ease-in-out
                       ${tier.highlighted 
-                        ? 'bg-white text-primary border border-transparent hover:bg-white/95' 
-                        : 'border border-primary bg-primary/[0.02] text-primary hover:bg-primary/[0.05]'
+                        ? 'bg-white text-primary border border-primary hover:bg-primary hover:text-white' 
+                        : 'border border-primary bg-light-bg text-primary hover:bg-primary hover:text-white'
                       }`}
                     >
                       {tier.cta}
                     </button>
-                    <p className="mt-4 text-center text-[13px] opacity-70 italic font-medium">
+                    <p
+                      className={`mt-4 text-center text-[14px] text-mini tracking-[-1%] italic ${tier.highlighted ? 'text-white' : ''}`}
+                    >
                       {tier.note}
                     </p>
                   </div>
@@ -133,21 +141,9 @@ export function JoinSection() {
             ))}
           </div>
 
-          <Reveal className="mt-20">
-            <div className="flex flex-wrap justify-center gap-x-12 gap-y-4 text-sm font-semibold text-primary/40 text-center">
-              <span>Participation modes:</span>
-              <div className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
-                <span>Physical Attendance</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-secondary/60" />
-                <span>Virtual Access</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-secondary/40" />
-                <span>Hybrid</span>
-              </div>
+          <Reveal className="mt-[60px]">
+            <div className="flex flex-wrap justify-center text-[16px] text-mini text-center">
+              Participation modes:  <span className="text-body font-semibold"> &nbsp; ⋇ Physical Attendance &nbsp;  ⋇ Virtual Access &nbsp;  ⋇ Hybrid</span>
             </div>
           </Reveal>
         </Container>

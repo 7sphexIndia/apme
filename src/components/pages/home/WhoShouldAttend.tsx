@@ -131,6 +131,7 @@ export function WhoShouldAttend() {
                 alt="Dubai skyline with Burj Khalifa"
                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                 loading="lazy"
+                decoding="async"
               />
             </Reveal>
           </div>

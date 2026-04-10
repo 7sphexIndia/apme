@@ -1,13 +1,14 @@
 import type { ReactNode } from 'react'
-import { useEffect, useRef, useState } from 'react'
 
+/**
+ * Animation-free wrapper.
+ *
+ * We intentionally render content immediately to avoid delayed rendering/loading
+ * (especially noticeable on images/videos) and to keep scrolling smooth.
+ */
 export function Reveal({
   children,
   className = '',
-  once = true,
-  threshold = 0.15,
-  rootMargin = '0px 0px -10% 0px',
-  delay = 0,
 }: {
   children: ReactNode
   className?: string
@@ -16,53 +17,6 @@ export function Reveal({
   rootMargin?: string
   delay?: number
 }) {
-  const ref = useRef<HTMLDivElement | null>(null)
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-
-    // If IO isn't available, just show content.
-    if (typeof IntersectionObserver === 'undefined') {
-      setVisible(true)
-      return
-    }
-
-    const obs = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0]
-        if (!entry) return
-        if (entry.isIntersecting) {
-          setVisible(true)
-          if (once) obs.disconnect()
-        } else if (!once) {
-          setVisible(false)
-        }
-      },
-      { threshold, rootMargin },
-    )
-
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [once, threshold, rootMargin])
-
-  return (
-    <div
-      ref={ref}
-      style={{ transitionDelay: `${delay}s` }}
-      className={[
-        'will-change-transform',
-        'transition-[opacity,transform] duration-700 ease-out',
-        'motion-reduce:transition-none motion-reduce:transform-none',
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4',
-        className,
-      ]
-        .filter(Boolean)
-        .join(' ')}
-    >
-      {children}
-    </div>
-  )
+  return <div className={className}>{children}</div>
 }
 

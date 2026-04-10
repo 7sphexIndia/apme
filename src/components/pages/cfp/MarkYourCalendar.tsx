@@ -51,7 +51,7 @@ export function MarkYourCalendar() {
         <Container>
           <div className="grid grid-cols-1 gap-[100px] lg:grid-cols-[0.65fr_1fr]">
             {/* Left Column: Heading and Tag */}
-            <div className="flex flex-col items-start">
+            <div className="flex flex-col items-start lg:sticky lg:top-[120px] lg:self-start">
               <Reveal className="mb-6">
                 <DarkIconTitle iconSrc={calenderIcon}>Mark Your Calendar</DarkIconTitle>
               </Reveal>

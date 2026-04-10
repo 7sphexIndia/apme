@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import Container from './Container'
+import DarkIconTitle from './DarkIconTitle'
 import { Pad } from './Pad'
 import { Reveal } from './Reveal'
 
@@ -7,6 +8,8 @@ export type PageHeroBadge = {
   text: string
   iconSrc?: string
   iconAlt?: string
+  animate?: boolean
+  iconSize?: number
 }
 
 export type PageHeroAction = {
@@ -23,6 +26,7 @@ export type PageHeroProps = {
   overlayClassName?: string
   contentAlign?: 'left' | 'center'
   className?: string
+  contentClassName?: string
 }
 
 export function PageHero({
@@ -34,6 +38,7 @@ export function PageHero({
   overlayClassName = 'bg-primary/70',
   contentAlign = 'left',
   className = '',
+  contentClassName = '',
 }: PageHeroProps) {
   const isCenter = contentAlign === 'center'
 
@@ -60,27 +65,20 @@ export function PageHero({
               className={[
                 'w-full pt-[3vw]',
                 isCenter ? 'max-w-[900px] text-center' : 'max-w-[808px]',
+                contentClassName,
               ].join(' ')}
             >
               {badge ? (
-                <div
-                  className={[
-                    'animate-float-y',
-                    'inline-flex items-center gap-2 rounded-[10px] border border-white/15 bg-white/10 px-3 py-2 text-[14px]',
-                    isCenter ? 'mx-auto' : '',
-                  ]
-                    .filter(Boolean)
-                    .join(' ')}
-                >
-                  {badge.iconSrc ? (
-                    <img
-                      src={badge.iconSrc}
-                      alt={badge.iconAlt ?? ''}
-                      aria-hidden={badge.iconAlt ? undefined : true}
-                      className="h-[11px] w-[11px] object-contain"
-                    />
-                  ) : null}
-                  <span>{badge.text}</span>
+                <div className={isCenter ? 'flex justify-center' : ''}>
+                  <DarkIconTitle
+                    iconSrc={badge.iconSrc}
+                    iconAlt={badge.iconAlt}
+                    animate={badge.animate}
+                    iconSize={badge.iconSize}
+                    className="animate-float-y border-white/15 bg-white/10 !text-[#F5F7FA]"
+                  >
+                    {badge.text}
+                  </DarkIconTitle>
                 </div>
               ) : null}
 

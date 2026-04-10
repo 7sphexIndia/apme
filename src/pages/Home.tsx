@@ -8,6 +8,7 @@ import { StatsSection } from '../components/pages/home/StatsSection'
 import { WhoShouldAttend } from '../components/pages/home/WhoShouldAttend'
 import { EventHighlights } from '../components/pages/home/EventHighlights'
 
+
 import { PublicationIndexingSection } from '../components/common/PublicationIndexingSection'
 import homePublicationTag from '../assets/img/home-publication.svg'
 import publication1 from '../assets/img/publication-1.svg'
@@ -16,6 +17,8 @@ import publication3 from '../assets/img/publication-3.svg'
 import publication4 from '../assets/img/publication-4.svg'
 import publication5 from '../assets/img/publication-5.svg'
 import publication6 from '../assets/img/publication-6.svg'
+import ctaVideo from '../assets/video/cta-video.mp4'
+import CTA from '../components/common/CTA'
 
 const HOME_PUBLICATION_LOGOS = [
   { img: publication1, alt: 'Scopus' },
@@ -53,12 +56,22 @@ export function Home() {
         }
         logos={HOME_PUBLICATION_LOGOS}
       />
+
       <PartnersSection />
       <WhoShouldAttend />
       <EventHighlights />
       <WhyDubaiSection />
       <ImportantDatesSection />
       <JoinSection />
+      <CTA
+        className="bg-white py-[100px]"
+        variant="form"
+        tagText="STAY UPDATED"
+        heading="Don't Miss APME 2026"
+        description="Get speaker announcements, CFP reminders, and exclusive conference updates directly in your inbox."
+        videoSrc={ctaVideo}
+        submitLabel="Subscribe"
+      />
     </>
   )
 }

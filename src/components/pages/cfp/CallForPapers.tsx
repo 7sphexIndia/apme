@@ -15,6 +15,8 @@ export function CallForPapers() {
                 src={cfpImage}
                 alt="Scientific illustration representing research innovation"
                 className="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
             </div>
  

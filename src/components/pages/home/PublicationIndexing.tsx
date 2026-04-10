@@ -64,6 +64,7 @@ export function PublicationIndexing() {
                     alt={logo.alt}
                     className="h-full w-full object-contain"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
               ))}

@@ -16,7 +16,7 @@ function AppLayout() {
       <Navbar />
       <Outlet />
     </>
-  )
+  ) 
 }
 
 function App() {
