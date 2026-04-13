@@ -10,23 +10,15 @@ import { EventHighlights } from '../components/pages/home/EventHighlights'
 
 
 import { PublicationIndexingSection } from '../components/common/PublicationIndexingSection'
-import homePublicationTag from '../assets/img/home-publication.svg'
-import publication1 from '../assets/img/publication-1.svg'
-import publication2 from '../assets/img/publication-2.svg'
-import publication3 from '../assets/img/publication-3.svg'
-import publication4 from '../assets/img/publication-4.svg'
-import publication5 from '../assets/img/publication-5.svg'
-import publication6 from '../assets/img/publication-6.svg'
-import ctaVideo from '../assets/video/cta-video.mp4'
 import CTA from '../components/common/CTA'
 
 const HOME_PUBLICATION_LOGOS = [
-  { img: publication1, alt: 'Scopus' },
-  { img: publication2, alt: 'EI Compendex' },
-  { img: publication3, alt: 'IET Inspec' },
-  { img: publication4, alt: 'WTI Frankfurt' },
-  { img: publication5, alt: 'zbMATH Open' },
-  { img: publication6, alt: 'SCImago' },
+  { img: '/img/publication-1.svg', alt: 'Scopus' },
+  { img: '/img/publication-2.svg', alt: 'EI Compendex' },
+  { img: '/img/publication-3.svg', alt: 'IET Inspec' },
+  { img: '/img/publication-4.svg', alt: 'WTI Frankfurt' },
+  { img: '/img/publication-5.svg', alt: 'zbMATH Open' },
+  { img: '/img/publication-6.svg', alt: 'SCImago' },
 ]
 
 export function Home() {
@@ -36,7 +28,7 @@ export function Home() {
       <AboutSection />
       <StatsSection />
       <PublicationIndexingSection
-        kickerIconSrc={homePublicationTag}
+        kickerIconSrc="/img/home-publication.svg"
         kickerText="PUBLICATION & INDEXING"
         heading={
           <>
@@ -69,7 +61,7 @@ export function Home() {
         tagText="STAY UPDATED"
         heading="Don't Miss APME 2026"
         description="Get speaker announcements, CFP reminders, and exclusive conference updates directly in your inbox."
-        videoSrc={ctaVideo}
+        videoSrc="/video/cta-video.mp4"
         submitLabel="Subscribe"
       />
     </>

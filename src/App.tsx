@@ -1,20 +1,27 @@
+import { lazy, Suspense } from 'react'
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
 import { Navbar } from './components/layout/Navbar'
-import { Agenda } from './pages/Agenda.tsx'
-import { Cfp } from './pages/Cfp.tsx'
-import { Committees } from './pages/Committees.tsx'
-import { Contact } from './pages/Contact.tsx'
-import { Gallery } from './pages/Gallery.tsx'
-import { Home } from './pages/Home.tsx'
-import { Publication } from './pages/Publication.tsx'
-import { Speakers } from './pages/Speakers.tsx'
-import { Venue } from './pages/Venue.tsx'
+
+import { Footer } from './components/layout/Footer'
+
+const Home = lazy(() => import('./pages/Home').then((m) => ({ default: m.Home })))
+const Cfp = lazy(() => import('./pages/Cfp').then((m) => ({ default: m.Cfp })))
+const Publication = lazy(() => import('./pages/Publication').then((m) => ({ default: m.Publication })))
+const Committees = lazy(() => import('./pages/Committees').then((m) => ({ default: m.Committees })))
+const Speakers = lazy(() => import('./pages/Speakers').then((m) => ({ default: m.Speakers })))
+const Agenda = lazy(() => import('./pages/Agenda').then((m) => ({ default: m.Agenda })))
+const Gallery = lazy(() => import('./pages/Gallery').then((m) => ({ default: m.Gallery })))
+const Venue = lazy(() => import('./pages/Venue').then((m) => ({ default: m.Venue })))
+const Contact = lazy(() => import('./pages/Contact').then((m) => ({ default: m.Contact })))
 
 function AppLayout() {
   return (
     <>
       <Navbar />
-      <Outlet />
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
+      <Footer />
     </>
   ) 
 }

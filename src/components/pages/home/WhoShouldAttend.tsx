@@ -2,8 +2,6 @@ import Container from '../../common/Container'
 import { Pad } from '../../common/Pad'
 import { Reveal } from '../../common/Reveal'
 import DarkIconTitle from '../../common/DarkIconTitle'
-import community1 from '../../../assets/img/community1.webp'
-import community from '../../../assets/img/community.svg'
 
 const attendeeCategories = [
   {
@@ -92,7 +90,7 @@ export function WhoShouldAttend() {
         <Container>
           <div className="mb-[30px] md:mb-[60px] flex flex-col items-center text-center">
             <Reveal className="mb-[30px]">
-              <DarkIconTitle iconSrc={community}>YOUR COMMUNITY</DarkIconTitle>
+              <DarkIconTitle iconSrc="/img/community.svg">YOUR COMMUNITY</DarkIconTitle>
             </Reveal>
             <Reveal className="mb-10">
               <h2 className="font-heading text-[36px] font-bold leading-[46px] text-primary max-[991px]:text-[32px]">
@@ -127,7 +125,7 @@ export function WhoShouldAttend() {
 
             <Reveal className="relative overflow-hidden rounded-[12px] border border-stroke min-h-[400px]">
               <img
-                src={community1}
+                src="/img/community1.webp"
                 alt="Dubai skyline with Burj Khalifa"
                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                 loading="lazy"

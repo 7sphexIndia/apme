@@ -16,6 +16,7 @@ export type PublicationIndexingSectionProps = {
   description: ReactNode
   note?: ReactNode
   logos: PublicationIndexingLogo[]
+  imageFetchPriority?: 'high' | 'low' | 'auto'
 }
 
 export function PublicationIndexingSection({
@@ -25,6 +26,7 @@ export function PublicationIndexingSection({
   description,
   note,
   logos,
+  imageFetchPriority,
 }: PublicationIndexingSectionProps) {
   return (
     <section className="bg-white py-[100px] max-[991px]:py-[60px]">
@@ -63,7 +65,8 @@ export function PublicationIndexingSection({
                     src={logo.img}
                     alt={logo.alt}
                     className="h-full w-full object-contain"
-                    loading="lazy"
+                    loading={idx === 0 && imageFetchPriority === 'high' ? undefined : 'lazy'}
+                    fetchPriority={idx === 0 ? imageFetchPriority : undefined}
                     decoding="async"
                   />
                 </div>

@@ -3,16 +3,9 @@ import Container from '../../common/Container'
 import DarkIconTitle from '../../common/DarkIconTitle'
 import { Pad } from '../../common/Pad'
 import { Reveal } from '../../common/Reveal'
-import aboutImage from '../../../assets/img/about-img.webp'
-import tagGreen from '../../../assets/img/green-dot.svg'
-import pillarsImg1 from '../../../assets/img/pillars-img-1.webp'
-import pillarsImg2 from '../../../assets/img/pillars-img-2.webp'
-import pillarsImg3 from '../../../assets/img/pillars-img-3.webp'
-
-
 const cards = [
   {
-    image: pillarsImg1,
+    image: '/img/pillars-img-1.webp',
     imageAlt: 'Physics formulas and scientific notation on a dark background',
     title: 'Applied Physics & Photonics',
     subtitle: 'Quantum · Condensed Matter · Nanoscience',
@@ -21,7 +14,7 @@ const cards = [
     readMoreTo: '/cfp',
   },
   {
-    image: pillarsImg2,
+    image: '/img/pillars-img-2.webp',
     imageAlt: 'Abstract geometric shapes representing mathematical concepts',
     title: 'Mathematical Sciences',
     subtitle: 'PDEs · Topology · Numerical Methods',
@@ -30,7 +23,7 @@ const cards = [
     readMoreTo: '/publication',
   },
   {
-    image: pillarsImg3,
+    image: '/img/pillars-img-3.webp',
     imageAlt: 'Solar panels in a field under a blue sky',
     title: 'Energy Innovation',
     subtitle: 'Fusion · Solar · Hydrogen Economy',
@@ -50,17 +43,17 @@ export function AboutSection() {
           <Reveal className="grid grid-cols-1 items-center gap-[30px] lg:grid-cols-2">
             <div className="h-[467px] overflow-hidden rounded-[10px] max-[767px]:h-[250px]">
               <img
-                src={aboutImage}
+                src="/img/about-img.webp"
                 alt="Conference audience and keynote presentation"
                 className="h-full w-full object-cover"
-                loading="lazy"
+                fetchPriority="high"
                 decoding="async"
               />
             </div>
 
             <div className="mt-[30px] lg:mt-0">
               <Reveal className="mb-6">
-                <DarkIconTitle iconSrc={tagGreen} animate={true} iconSize={11}>
+                <DarkIconTitle iconSrc="/img/green-dot.svg" animate={true} iconSize={11}>
                   About APME 2026
                 </DarkIconTitle>
               </Reveal>

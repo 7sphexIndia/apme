@@ -4,9 +4,8 @@ import DarkIconTitle from '../../common/DarkIconTitle'
 import { Pad } from '../../common/Pad'
 import { Reveal } from '../../common/Reveal'
 
-import publicationImg from '../../../assets/img/publication.webp'
-import apmePdf from '../../../assets/files/apme.pdf'
-import defaultKickerIcon from '../../../assets/img/publication-tag.svg'
+
+
 
 type PublicationCard = {
   id: string
@@ -22,44 +21,47 @@ type YearlyPublications = {
   }
 }
 
+const TEMP_PDF_URL =
+  'https://drive.google.com/file/d/1j5-NRWOcDA-2prvREydsGqaAC_3bk76n/view?usp=sharing'
+
 const PUBLICATIONS_DATA: YearlyPublications = {
   '2024': {
     ict4sd: [
-      { id: '2024-1', title: 'ICT4SD Vol 1', img: publicationImg, pdf: apmePdf },
-      { id: '2024-2', title: 'ICT4SD Vol 2', img: publicationImg, pdf: apmePdf },
-      { id: '2024-3', title: 'ICT4SD Vol 3', img: publicationImg, pdf: apmePdf },
-      { id: '2024-4', title: 'ICT4SD Vol 4', img: publicationImg, pdf: apmePdf },
-      { id: '2024-9', title: 'ICT4SD Vol 5', img: publicationImg, pdf: apmePdf },
-      { id: '2024-10', title: 'ICT4SD Vol 6', img: publicationImg, pdf: apmePdf },
-      { id: '2024-11', title: 'ICT4SD Vol 7', img: publicationImg, pdf: apmePdf },
-      { id: '2024-12', title: 'ICT4SD Vol 8', img: publicationImg, pdf: apmePdf },
+      { id: '2024-1', title: 'ICT4SD Vol 1', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
+      { id: '2024-2', title: 'ICT4SD Vol 2', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
+      { id: '2024-3', title: 'ICT4SD Vol 3', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
+      { id: '2024-4', title: 'ICT4SD Vol 4', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
+      { id: '2024-9', title: 'ICT4SD Vol 5', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
+      { id: '2024-10', title: 'ICT4SD Vol 6', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
+      { id: '2024-11', title: 'ICT4SD Vol 7', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
+      { id: '2024-12', title: 'ICT4SD Vol 8', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
     ],
     worlds4: [
-      { id: '2024-5', title: 'Worlds4 Vol 1', img: publicationImg, pdf: apmePdf },
-      { id: '2024-6', title: 'Worlds4 Vol 2', img: publicationImg, pdf: apmePdf },
-      { id: '2024-7', title: 'Worlds4 Vol 3', img: publicationImg, pdf: apmePdf },
-      { id: '2024-8', title: 'Worlds4 Vol 4', img: publicationImg, pdf: apmePdf },
+      { id: '2024-5', title: 'Worlds4 Vol 1', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
+      { id: '2024-6', title: 'Worlds4 Vol 2', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
+      { id: '2024-7', title: 'Worlds4 Vol 3', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
+      { id: '2024-8', title: 'Worlds4 Vol 4', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
     ],
   },
   '2023': {
     ict4sd: [
-      { id: '2023-1', title: 'ICT4SD Vol 1', img: publicationImg, pdf: apmePdf },
-      { id: '2023-2', title: 'ICT4SD Vol 2', img: publicationImg, pdf: apmePdf },
-      { id: '2023-3', title: 'ICT4SD Vol 3', img: publicationImg, pdf: apmePdf },
-      { id: '2023-4', title: 'ICT4SD Vol 4', img: publicationImg, pdf: apmePdf },
+      { id: '2023-1', title: 'ICT4SD Vol 1', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
+      { id: '2023-2', title: 'ICT4SD Vol 2', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
+      { id: '2023-3', title: 'ICT4SD Vol 3', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
+      { id: '2023-4', title: 'ICT4SD Vol 4', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
     ],
     worlds4: [],
   },
   '2022': {
     ict4sd: [
-      { id: '2022-1', title: 'ICT4SD Vol 1', img: publicationImg, pdf: apmePdf },
-      { id: '2022-2', title: 'ICT4SD Vol 2', img: publicationImg, pdf: apmePdf },
+      { id: '2022-1', title: 'ICT4SD Vol 1', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
+      { id: '2022-2', title: 'ICT4SD Vol 2', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
     ],
     worlds4: [],
   },
   '2021': {
     ict4sd: [
-      { id: '2021-1', title: 'ICT4SD Vol 1', img: publicationImg, pdf: apmePdf },
+      { id: '2021-1', title: 'ICT4SD Vol 1', img: '/img/publication.webp', pdf: TEMP_PDF_URL },
     ],
     worlds4: [],
   },
@@ -67,16 +69,17 @@ const PUBLICATIONS_DATA: YearlyPublications = {
 
 function PublicationCardItem({
   pub,
-  onDownload,
 }: {
   pub: PublicationCard
-  onDownload: (pdfUrl: string, title: string) => void
 }) {
   return (
     <Reveal>
-      <div
-        onClick={() => onDownload(pub.pdf, pub.title)}
-        className="group cursor-pointer overflow-hidden rounded-[10px] border border-stroke bg-white p-3 transition-all duration-500 hover:border-secondary/20 hover:shadow-xl md:p-4"
+      <a
+        href={pub.pdf}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`Open ${pub.title} PDF`}
+        className="group block cursor-pointer overflow-hidden rounded-[10px] border border-stroke bg-white p-3 transition-all duration-500 hover:border-secondary/20 hover:shadow-xl md:p-4"
       >
         <div className="relative aspect-[3/4] overflow-hidden rounded-[12px] bg-gray-50 mb-4">
           <img
@@ -112,7 +115,7 @@ function PublicationCardItem({
             {pub.title}
           </h3>
         </div>
-      </div>
+      </a>
     </Reveal>
   )
 }
@@ -120,15 +123,6 @@ function PublicationCardItem({
 export function PreviousPublications() {
   const years = Object.keys(PUBLICATIONS_DATA).sort((a, b) => b.localeCompare(a))
   const [activeYear, setActiveYear] = useState(years[0])
-
-  const handleDownload = (pdfUrl: string, title: string) => {
-    const link = document.createElement('a')
-    link.href = pdfUrl
-    link.download = `${title.replace(/\s+/g, '_')}.pdf`
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
 
   const currentYearData = PUBLICATIONS_DATA[activeYear]
 
@@ -138,7 +132,7 @@ export function PreviousPublications() {
         <Container>
           <div className="flex flex-col items-center">
             <Reveal className="mb-6 flex justify-center">
-              <DarkIconTitle iconSrc={defaultKickerIcon}>PUBLICATION</DarkIconTitle>
+              <DarkIconTitle iconSrc="/img/publication-tag.svg">PUBLICATION</DarkIconTitle>
             </Reveal>
 
             <Reveal className="mb-10 text-center md:mb-[60px]">
@@ -207,7 +201,6 @@ export function PreviousPublications() {
                       <PublicationCardItem 
                         key={pub.id} 
                         pub={pub} 
-                        onDownload={handleDownload} 
                       />
                     ))}
                   </div>
@@ -222,7 +215,6 @@ export function PreviousPublications() {
                       <PublicationCardItem 
                         key={pub.id} 
                         pub={pub} 
-                        onDownload={handleDownload} 
                       />
                     ))}
                   </div>

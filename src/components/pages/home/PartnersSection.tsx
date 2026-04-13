@@ -1,30 +1,26 @@
 import Container from '../../common/Container'
 import { Pad } from '../../common/Pad'
 import { Reveal } from '../../common/Reveal'
-import partner1 from '../../../assets/img/partner-logo1.svg'
-import partner2 from '../../../assets/img/partner-logo2.svg'
-import partner3 from '../../../assets/img/partner-logo3.svg'
-import partner4 from '../../../assets/img/partner-logo4.svg'
 
 const partners = [
   {
     label: 'Supporting Local Partner',
-    logo: partner1,
+    logo: '/img/partner-logo1.svg',
     alt: 'Global Chamber London',
   },
   {
     label: 'International Organizing Partner',
-    logo: partner2,
+    logo: '/img/partner-logo2.svg',
     alt: 'GR Foundation',
   },
   {
     label: 'International Managing Partner',
-    logo: partner3,
+    logo: '/img/partner-logo3.svg',
     alt: 'GR Scholastic',
   },
   {
     label: 'Publication Partner',
-    logo: partner4,
+    logo: '/img/partner-logo4.svg',
     alt: 'Springer Nature',
   },
 ]

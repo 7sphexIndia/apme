@@ -2,7 +2,6 @@ import Container from '../../common/Container'
 import { Pad } from '../../common/Pad'
 import { Reveal } from '../../common/Reveal'
 import DarkIconTitle from '../../common/DarkIconTitle'
-import calenderIcon from '../../../assets/img/calender-icon.svg'
  
 const milestones = [
   {
@@ -53,7 +52,7 @@ export function MarkYourCalendar() {
             {/* Left Column: Heading and Tag */}
             <div className="flex flex-col items-start lg:sticky lg:top-[120px] lg:self-start">
               <Reveal className="mb-6">
-                <DarkIconTitle iconSrc={calenderIcon}>Mark Your Calendar</DarkIconTitle>
+                <DarkIconTitle iconSrc="/img/calender-icon.svg">Mark Your Calendar</DarkIconTitle>
               </Reveal>
               <Reveal className="mb-6">
                 <h2 className="font-heading text-[40px] font-bold leading-tight text-primary max-[991px]:text-[32px]">

@@ -1,9 +1,8 @@
-import { useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import Container from './Container'
 import DarkIconTitle from './DarkIconTitle'
 import { Pad } from './Pad'
 import { ButtonLink, getButtonLinkParts } from './ButtonLink'
-import tagGreen from '../../assets/img/green-dot.svg'
 
 type CTALinkButton = {
   label: string
@@ -56,22 +55,83 @@ export default function CTA(props: CTAProps) {
     className = '',
   } = props
 
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
+  const [videoReady, setVideoReady] = useState(false)
+
+  const shouldSkipVideo = useMemo(() => {
+    if (typeof window === 'undefined') return true
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches) return true
+    const conn = (navigator as any).connection
+    if (conn?.saveData) return true
+    const effectiveType = String(conn?.effectiveType ?? '')
+    if (effectiveType.includes('2g') || effectiveType.includes('slow-2g')) return true
+    return false
+  }, [])
+
+  useEffect(() => {
+    if (shouldSkipVideo) return
+    const el = containerRef.current
+    if (!el) return
+
+    if (typeof IntersectionObserver === 'undefined') {
+      setShouldLoadVideo(true)
+      return
+    }
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0]
+        if (!entry?.isIntersecting) return
+
+        // Defer heavy media until the browser is idle.
+        const ric = (window as any).requestIdleCallback as
+          | ((cb: () => void, opts?: { timeout: number }) => number)
+          | undefined
+
+        if (ric) {
+          ric(() => setShouldLoadVideo(true), { timeout: 1500 })
+        } else {
+          setTimeout(() => setShouldLoadVideo(true), 300)
+        }
+        obs.disconnect()
+      },
+      { threshold: 0.15 },
+    )
+
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [shouldSkipVideo])
+
   return (
     <section className={className}>
       <Pad>
         <Container>
-          <div className="relative overflow-hidden rounded-[20px]">
+          <div ref={containerRef} className="relative overflow-hidden rounded-[20px] bg-primary">
             <div className="absolute inset-0 z-0">
-              <video autoPlay muted loop playsInline preload="none" className="h-full w-full object-cover">
-                <source src={videoSrc} type="video/mp4" />
-              </video>
+              {shouldLoadVideo && !shouldSkipVideo ? (
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="none"
+                  onLoadedData={() => setVideoReady(true)}
+                  className={[
+                    'absolute inset-0 h-full w-full object-cover transition-opacity duration-500',
+                    videoReady ? 'opacity-100' : 'opacity-0',
+                  ].join(' ')}
+                >
+                  <source src={videoSrc} type="video/mp4" />
+                </video>
+              ) : null}
             </div>
             <div className={['absolute inset-0 z-0', overlayClassName].join(' ')} />
 
             <div className="relative z-10 px-[20px] py-[50px] text-white md:px-[60px] md:py-[100px]">
               <div className="mx-auto flex w-full max-w-[900px] flex-col items-center text-center">
                 <DarkIconTitle
-                  iconSrc={tagGreen}
+                  iconSrc="/img/green-dot.svg"
                   animate={true}
                   iconSize={11}
                   className="border-white/15 bg-white/10 backdrop-blur-[10px] !text-[#F5F7FA]"

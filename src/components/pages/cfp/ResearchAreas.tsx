@@ -1,8 +1,6 @@
 import Container from '../../common/Container'
 import DarkIconTitle from '../../common/DarkIconTitle'
 import { Pad } from '../../common/Pad'
-import researchIcon from '../../../assets/img/research-icon.svg'
-import listStarIcon from '../../../assets/img/list-star-icon.svg'
 
 const points = ['⋇ 6 Tracks', '⋇ 40+ Topics', '⋇ Open Submissions · May 2026'] as const
 
@@ -227,7 +225,7 @@ export function ResearchAreas() {
       <Pad>
         <Container>
           <div className="mx-auto flex max-w-[920px] flex-col items-center text-center">
-            <DarkIconTitle iconSrc={researchIcon}>Research Areas</DarkIconTitle>
+            <DarkIconTitle iconSrc="/img/research-icon.svg">Research Areas</DarkIconTitle>
 
             <h2 className="mt-[30px] font-heading text-[36px] font-bold leading-[115%] text-primary max-[991px]:text-[28px]">
               Conference <span className="text-secondary">Tracks</span>
@@ -266,7 +264,7 @@ export function ResearchAreas() {
                   {t.items.map((li) => (
                     <li key={li} className="flex items-start gap-2 text-[16px] text-body">
                       <img
-                        src={listStarIcon}
+                        src="/img/list-star-icon.svg"
                         alt=""
                         aria-hidden="true"
                         className="mt-[3px] h-[18px] w-[18px] object-contain"

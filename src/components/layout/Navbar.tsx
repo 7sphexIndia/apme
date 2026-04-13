@@ -6,14 +6,12 @@ import { Pad } from '../common/Pad'
 
 const navLinkClassName = ({
   isActive,
-  scrolled,
 }: {
   isActive: boolean
-  scrolled: boolean
 }) =>
   [
     'text-[16px] transition-all duration-300',
-    scrolled ? 'text-primary' : 'text-[#F5F7FA]',
+    'text-[#F5F7FA]',
     isActive ? 'font-bold' : 'font-normal',
     'hover:opacity-80',
   ].join(' ')
@@ -45,8 +43,8 @@ export function Navbar() {
       className={[
         'fixed top-0 z-[999] w-full border-b backdrop-blur-[30px] transition-all duration-300',
         scrolled
-          ? 'border-primary/10 bg-white shadow-sm'
-          : 'border-white/15 bg-white/[0.02]',
+          ? 'border-primary/10 bg-primary shadow-sm'
+          : 'border-white/10 bg-white/[0.02]',
       ].join(' ')}
     >
       <Pad as="div">
@@ -54,24 +52,17 @@ export function Navbar() {
           <div className="flex items-center justify-between py-[30px] transition-all duration-300">
             <NavLink className="inline-flex items-center" to="/">
               <img
-                src="/assets/img/logo.svg"
+                src="/img/logo.svg"
                 alt="APME Logo"
                 decoding="async"
-                className={[
-                  'h-[50px] w-auto object-contain transition-all duration-300',
-                  scrolled ? 'brightness-0' : '',
-                ]
-                  .filter(Boolean)
-                  .join(' ')}
+                fetchPriority="high"
+                className="h-[50px] w-auto object-contain transition-all duration-300"
               />
             </NavLink>
 
             <button
               type="button"
-              className={[
-                'inline-flex items-center justify-center p-2 xl:hidden',
-                scrolled ? 'text-primary' : 'text-[#F5F7FA]',
-              ].join(' ')}
+              className="inline-flex items-center justify-center p-2 text-[#F5F7FA] xl:hidden"
               aria-label="Toggle navigation"
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
@@ -106,7 +97,7 @@ export function Navbar() {
                   <li key={link.to} className="xl:flex xl:items-center">
                     <NavLink
                       className={({ isActive }) =>
-                        navLinkClassName({ isActive, scrolled })
+                        navLinkClassName({ isActive })
                       }
                       to={link.to}
                       onClick={() => setOpen(false)}
@@ -124,8 +115,8 @@ export function Navbar() {
                   className={[
                     'transition-all duration-300',
                     scrolled
-                      ? 'bg-primary hover:!bg-secondary'
-                      : 'bg-secondary hover:!bg-primary',
+                      ? 'bg-secondary hover:!bg-primary'
+                      : 'bg-primary hover:!bg-secondary',
                   ].join(' ')}
                 >
                   Contact Us

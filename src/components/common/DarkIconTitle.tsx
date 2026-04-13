@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
-import defaultIcon from '../../assets/img/dark-heading-icon.svg'
+
+const defaultIcon = '/img/dark-heading-icon.svg'
 
 type DarkIconTitleProps = {
   children: ReactNode

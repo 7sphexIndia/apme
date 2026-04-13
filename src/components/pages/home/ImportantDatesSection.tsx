@@ -2,7 +2,6 @@ import Container from '../../common/Container'
 import DarkIconTitle from '../../common/DarkIconTitle'
 import { Pad } from '../../common/Pad'
 import { Reveal } from '../../common/Reveal'
-import calenderIcon from '../../../assets/img/calender-icon.svg'
 
 const milestones = [
   {
@@ -59,7 +58,7 @@ export function ImportantDatesSection() {
         <Container>
           <div className="flex flex-col items-center text-center">
             <Reveal className="mb-[30px]">
-              <DarkIconTitle iconSrc={calenderIcon}>Key Milestones</DarkIconTitle>
+              <DarkIconTitle iconSrc="/img/calender-icon.svg">Key Milestones</DarkIconTitle>
             </Reveal>
             <Reveal className="mb-[76px]">
               <h2 className="font-heading text-[36px] font-bold leading-[46px] text-primary max-[767px]:text-[32px]">

@@ -2,7 +2,6 @@ import Container from '../../common/Container'
 import { Pad } from '../../common/Pad'
 import { Reveal } from '../../common/Reveal'
 import DarkIconTitle from '../../common/DarkIconTitle'
-import highlightsIcon from '../../../assets/img/highlights.svg'
 
 const highlightsList = [
   {
@@ -126,7 +125,7 @@ export function EventHighlights() {
         <Container>
           <div className="mb-[30px] md:mb-[60px] flex flex-col items-center text-center">
             <Reveal className="mb-[30px]">
-              <DarkIconTitle iconSrc={highlightsIcon}>CONFERENCE EXPERIENCE</DarkIconTitle>
+              <DarkIconTitle iconSrc="/img/highlights.svg">CONFERENCE EXPERIENCE</DarkIconTitle>
             </Reveal>
             <Reveal className="mb-10">
               <h2 className="font-heading text-[36px] font-bold leading-[46px] text-primary max-[991px]:text-[32px]">

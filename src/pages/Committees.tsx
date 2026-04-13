@@ -1,7 +1,5 @@
 import { PageHero } from '../components/common/PageHero'
 import { CommitteesTabsSection } from '../components/pages/committees/CommitteesTabsSection'
-import tagGreen from '../assets/img/green-dot.svg'
-import ctaVideo from '../assets/video/cta-video.mp4'
 import CTA from '../components/common/CTA'
 
 export function Committees() {
@@ -14,7 +12,7 @@ export function Committees() {
         contentClassName="max-w-[1100px]"
         badge={{
           text: 'DUBAI, UAE • NOV 15-17, 2026',
-          iconSrc: tagGreen,
+          iconSrc: '/img/green-dot.svg',
           animate: true,
           iconSize: 11,
         }}
@@ -38,7 +36,7 @@ export function Committees() {
         tagText="STAY UPDATED"
         heading="Don't Miss APME 2026"
         description="Get the latest news on publication deadlines, indexing updates, and conference schedules"
-        videoSrc={ctaVideo}
+        videoSrc="/video/cta-video.mp4"
         submitLabel="Subscribe"
       />
     </>

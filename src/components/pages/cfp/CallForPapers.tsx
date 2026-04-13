@@ -1,8 +1,6 @@
 import Container from '../../common/Container'
 import DarkIconTitle from '../../common/DarkIconTitle'
 import { Pad } from '../../common/Pad'
-import speakerIcon from '../../../assets/img/speaker-icon.svg'
-import cfpImage from '../../../assets/img/cfp-image.webp'
  
 export function CallForPapers() {
   return (
@@ -12,16 +10,16 @@ export function CallForPapers() {
           <div className="grid grid-cols-1 items-center gap-[30px] lg:grid-cols-2">
             <div className="h-[487px] overflow-hidden rounded-[10px] max-[991px]:h-[320px] max-[767px]:h-[220px]">
               <img
-                src={cfpImage}
+                src="/img/cfp-image.webp"
                 alt="Scientific illustration representing research innovation"
                 className="h-full w-full object-cover"
-                loading="lazy"
+                fetchPriority="high"
                 decoding="async"
               />
             </div>
  
             <div>
-              <DarkIconTitle iconSrc={speakerIcon}>Call For Papers</DarkIconTitle>
+              <DarkIconTitle iconSrc="/img/speaker-icon.svg">Call For Papers</DarkIconTitle>
  
               <h2 className="mt-[30px] font-heading text-[36px] font-bold leading-[46px] text-primary max-[991px]:text-[28px]">
                 Forging the Next Frontier of <br />

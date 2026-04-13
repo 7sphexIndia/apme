@@ -2,7 +2,6 @@ import { ButtonLink } from '../../common/ButtonLink'
 import Container from '../../common/Container'
 import DarkIconTitle from '../../common/DarkIconTitle'
 import { Pad } from '../../common/Pad'
-import submitFileIcon from '../../../assets/img/submit-file-icon.svg'
 
 export function SubmitNow() {
   return (
@@ -11,7 +10,7 @@ export function SubmitNow() {
         <Container>
           <div className="grid grid-cols-1 items-stretch gap-[30px] lg:grid-cols-[1fr_0.45fr] lg:gap-[60px]">
             <div>
-              <DarkIconTitle iconSrc={submitFileIcon}>Submit now</DarkIconTitle>
+              <DarkIconTitle iconSrc="/img/submit-file-icon.svg">Submit now</DarkIconTitle>
 
               <h2 className="mt-[30px] font-heading text-[36px] font-bold leading-[115%] text-primary max-[991px]:text-[28px]">
                 Submission <span className="text-secondary">Guidelines</span>
@@ -41,10 +40,11 @@ export function SubmitNow() {
             <div className="flex h-full items-center justify-center rounded-[10px] bg-white p-[30px]">
               {/* NOTE: this intentionally uses a runtime path so it won't error if the PNG isn't committed yet. */}
               <img
-                src="/src/assets/img/submit-logo.png"
+                src="/img/submit-logo.png"
                 alt="Submission platform logo"
                 className="max-h-[120px] w-full max-w-[320px] object-contain"
                 loading="lazy"
+                decoding="async"
               />
             </div>
           </div>

@@ -4,12 +4,10 @@ import Container from '../../common/Container'
 import { Pad } from '../../common/Pad'
 import DarkIconTitle from '../../common/DarkIconTitle'
 import { Reveal } from '../../common/Reveal'
-import tagGreen from '../../../assets/img/green-dot.svg'
-import heroVideo from '../../../assets/video/hero-video.mp4'
 
 export function HeroSection({
   badgeText = 'Now Accepting Submissions - Dubai, UAE',
-  badgeIconSrc = tagGreen,
+  badgeIconSrc = '/img/green-dot.svg',
   badgeAnimate = true,
   badgeIconSize = 11,
 }: {
@@ -20,6 +18,8 @@ export function HeroSection({
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
+  const [videoReady, setVideoReady] = useState(false)
+  const [startTicker, setStartTicker] = useState(false)
 
   const shouldSkipVideo = useMemo(() => {
     // Respect reduced motion and data-saver connections.
@@ -47,16 +47,51 @@ export function HeroSection({
       (entries) => {
         const entry = entries[0]
         if (entry?.isIntersecting) {
-          setShouldLoadVideo(true)
+          // Defer heavy media until the browser is idle.
+          const ric = (window as any).requestIdleCallback as
+            | ((cb: () => void, opts?: { timeout: number }) => number)
+            | undefined
+          if (ric) {
+            ric(() => setShouldLoadVideo(true), { timeout: 1500 })
+          } else {
+            setTimeout(() => setShouldLoadVideo(true), 300)
+          }
           obs.disconnect()
         }
       },
       { threshold: 0.1 },
     )
 
-    obs.observe(el)
+    const videoElement = el.querySelector('video')
+    if (videoElement) {
+      obs.observe(videoElement)
+    } else {
+      obs.observe(el)
+    }
     return () => obs.disconnect()
   }, [shouldSkipVideo])
+
+  useEffect(() => {
+    // Speed Index is sensitive to above-the-fold visual changes.
+    // Delay the infinite ticker animation until the browser is idle.
+    const ric = (window as any).requestIdleCallback as
+      | ((cb: () => void, opts?: { timeout: number }) => number)
+      | undefined
+
+    if (ric) {
+      const id = ric(() => setStartTicker(true), { timeout: 2000 })
+      return () => {
+        try {
+          ;(window as any).cancelIdleCallback?.(id)
+        } catch {
+          // ignore
+        }
+      }
+    }
+
+    const t = window.setTimeout(() => setStartTicker(true), 1200)
+    return () => window.clearTimeout(t)
+  }, [])
 
   return (
     <section className="relative flex h-[110svh] pt-[144px] items-center drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
@@ -72,10 +107,14 @@ export function HeroSection({
               muted
               loop
               playsInline
-              preload="metadata"
-              className="h-full w-full object-cover"
+              preload="none"
+              onLoadedData={() => setVideoReady(true)}
+              className={[
+                'absolute inset-0 h-full w-full object-cover transition-opacity duration-500',
+                videoReady ? 'opacity-100' : 'opacity-0',
+              ].join(' ')}
             >
-              <source src={heroVideo} type="video/mp4" />
+              <source src="/video/hero-video.mp4" type="video/mp4" />
             </video>
           ) : null}
         </div>
@@ -159,7 +198,14 @@ export function HeroSection({
         </Container>
       </Pad>
       <div className="absolute bottom-0 left-0 right-0 z-20 overflow-hidden border-t border-primary bg-primary/30 py-8 max-[767px]:py-[20px]">
-        <div className="flex animate-scroll-loop items-center gap-[50px] will-change-transform max-[767px]:animate-scroll-loop-fast">
+        <div
+          className={[
+            'flex items-center gap-[50px]',
+            startTicker ? 'animate-scroll-loop will-change-transform max-[767px]:animate-scroll-loop-fast' : '',
+          ]
+            .filter(Boolean)
+            .join(' ')}
+        >
           <ScrollingGroup items={items} ariaHidden={false} />
           <ScrollingGroup items={items} ariaHidden />
         </div>

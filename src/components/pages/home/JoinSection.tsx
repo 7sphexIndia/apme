@@ -2,9 +2,6 @@ import Container from '../../common/Container'
 import { Pad } from '../../common/Pad'
 import { Reveal } from '../../common/Reveal'
 import DarkIconTitle from '../../common/DarkIconTitle'
-import greenTick from '../../../assets/img/green-tick.svg'
-import whiteTick from '../../../assets/img/white-tick.svg'
-import profileIcon from '../../../assets/img/profile.svg'
 
 
 const tiers = [
@@ -64,7 +61,7 @@ export function JoinSection() {
           <div className="flex flex-col items-center text-center">
             <Reveal className="mb-[30px]">
 
-              <DarkIconTitle iconSrc={profileIcon}>SECURE YOUR PLACE</DarkIconTitle>
+              <DarkIconTitle iconSrc="/img/profile.svg">SECURE YOUR PLACE</DarkIconTitle>
 
             </Reveal>
             <Reveal className="mb-10">
@@ -110,7 +107,7 @@ export function JoinSection() {
                     {tier.features.map((feature, fIdx) => (
                       <li key={fIdx} className="flex items-start gap-[7px] text-[16px] leading-tight">
                         <img 
-                          src={tier.highlighted ? whiteTick : greenTick} 
+                          src={tier.highlighted ? '/img/white-tick.svg' : '/img/green-tick.svg'} 
                           alt="check" 
                           className="mt-0.5 h-[18px] w-[18px] shrink-0" 
                           loading="lazy"

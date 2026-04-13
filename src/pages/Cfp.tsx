@@ -1,28 +1,19 @@
 import { CallForPapers } from '../components/pages/cfp/CallForPapers'
 import { PageHero } from '../components/common/PageHero'
-import tagGreen from '../assets/img/green-dot.svg'
 import { MarkYourCalendar } from '../components/pages/cfp/MarkYourCalendar'
 import { ResearchAreas } from '../components/pages/cfp/ResearchAreas'
 import { SubmitNow } from '../components/pages/cfp/SubmitNow'
 import { PublicationIndexingSection } from '../components/common/PublicationIndexingSection'
-import scheduleTag from '../assets/img/schedule.svg'
-import publication1 from '../assets/img/publication-1.svg'
-import publication2 from '../assets/img/publication-2.svg'
-import publication3 from '../assets/img/publication-3.svg'
-import publication4 from '../assets/img/publication-4.svg'
-import publication5 from '../assets/img/publication-5.svg'
-import publication6 from '../assets/img/publication-6.svg'
 import { Resources } from '../components/pages/cfp/Resources'
-import ctaVideo from '../assets/video/cta-video.mp4'
 import CTA from '../components/common/CTA'
 
 const HOME_PUBLICATION_LOGOS = [
-  { img: publication1, alt: 'Scopus' },
-  { img: publication2, alt: 'EI Compendex' },
-  { img: publication3, alt: 'IET Inspec' },
-  { img: publication4, alt: 'WTI Frankfurt' },
-  { img: publication5, alt: 'zbMATH Open' },
-  { img: publication6, alt: 'SCImago' },
+  { img: '/img/publication-1.svg', alt: 'Scopus' },
+  { img: '/img/publication-2.svg', alt: 'EI Compendex' },
+  { img: '/img/publication-3.svg', alt: 'IET Inspec' },
+  { img: '/img/publication-4.svg', alt: 'WTI Frankfurt' },
+  { img: '/img/publication-5.svg', alt: 'zbMATH Open' },
+  { img: '/img/publication-6.svg', alt: 'SCImago' },
 ]
 
 export function Cfp() {
@@ -34,7 +25,7 @@ export function Cfp() {
         contentAlign="center"
         badge={{
           text: 'DUBAI, UAE • NOV 15–17, 2026',
-          iconSrc: tagGreen,
+          iconSrc: '/img/green-dot.svg',
           animate: true,
           iconSize: 11,
         }}
@@ -52,7 +43,7 @@ export function Cfp() {
       <ResearchAreas />
       <SubmitNow />
       <PublicationIndexingSection
-        kickerIconSrc={scheduleTag}
+        kickerIconSrc="/img/schedule.svg"
         kickerText="Coming Soon"
         heading={
           <>
@@ -78,7 +69,7 @@ export function Cfp() {
         tagText="READY TO CONTRIBUTE?"
         heading="Submit Your Research Today"
         description="Join leading researchers from around the world at APME 2026. Share your innovative work and connect with the scientific community."
-        videoSrc={ctaVideo}
+        videoSrc="/video/cta-video.mp4"
         button={{ label: 'Submit Paper Now', to: '/contact' 
           
         }}

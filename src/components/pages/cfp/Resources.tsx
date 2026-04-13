@@ -1,9 +1,6 @@
 import Container from '../../common/Container'
 import DarkIconTitle from '../../common/DarkIconTitle'
 import { Pad } from '../../common/Pad'
-import folderIcon from '../../../assets/img/folder-icon.svg'
-import policyIcon from '../../../assets/img/policy-icon.svg'
-import apmePdfUrl from '../../../assets/files/apme.pdf'
 import type { ReactNode } from 'react'
 
 type ResourceCard = {
@@ -11,28 +8,26 @@ type ResourceCard = {
   subtitle: string
   /** Change the import at the top and point here when a row needs its own file */
   pdfUrl: string
-  /** Filename the user sees when saving (set manually per row) */
-  pdfFileName: string
 }
+
+const TEMP_PDF_URL =
+  'https://drive.google.com/file/d/1j5-NRWOcDA-2prvREydsGqaAC_3bk76n/view?usp=sharing'
 
 const guidelineCards: ResourceCard[] = [
   {
     title: 'Proceedings Guidelines for Authors',
     subtitle: 'Manuscript preparation standards',
-    pdfUrl: apmePdfUrl,
-    pdfFileName: 'apme.pdf',
+    pdfUrl: TEMP_PDF_URL,
   },
   {
     title: 'Author Guideline for Paper Submission',
     subtitle: 'Step-by-step submission walkthrough',
-    pdfUrl: apmePdfUrl,
-    pdfFileName: 'apme.pdf',
+    pdfUrl: TEMP_PDF_URL,
   },
   {
     title: 'Paper Submission Guidelines',
     subtitle: 'Paper Submission Guidelines',
-    pdfUrl: apmePdfUrl,
-    pdfFileName: 'apme.pdf',
+    pdfUrl: TEMP_PDF_URL,
   },
 ]
 
@@ -40,26 +35,22 @@ const templateCards: ResourceCard[] = [
   {
     title: 'Sample LaTeX Paper',
     subtitle: 'Reference template to build upon',
-    pdfUrl: apmePdfUrl,
-    pdfFileName: 'apme.pdf',
+    pdfUrl: TEMP_PDF_URL,
   },
   {
     title: 'LaTeX Instructions for Authors',
     subtitle: 'Compilation & macro guide',
-    pdfUrl: apmePdfUrl,
-    pdfFileName: 'apme.pdf',
+    pdfUrl: TEMP_PDF_URL,
   },
   {
     title: 'LaTeX Package',
     subtitle: 'Full style files & class packages',
-    pdfUrl: apmePdfUrl,
-    pdfFileName: 'apme.pdf',
+    pdfUrl: TEMP_PDF_URL,
   },
   {
     title: 'Word Templates',
     subtitle: 'Microsoft Word manuscript template',
-    pdfUrl: apmePdfUrl,
-    pdfFileName: 'apme.pdf',
+    pdfUrl: TEMP_PDF_URL,
   },
 ]
 
@@ -71,7 +62,7 @@ export function Resources() {
           <div>
             <div className="flex flex-col gap-[30px] lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-[680px]">
-                <DarkIconTitle iconSrc={folderIcon}>Resources</DarkIconTitle>
+                <DarkIconTitle iconSrc="/img/folder-icon.svg">Resources</DarkIconTitle>
 
                 <h2 className="mt-[30px] font-heading text-[36px] font-bold leading-[115%] text-primary max-[991px]:text-[28px]">
                   Guidelines, <span className="text-secondary">Templates</span> &amp; Policies
@@ -115,7 +106,7 @@ export function Resources() {
                 <div className="flex flex-row items-center gap-[16px] flex-col items-baseline md:flex-row md:items-center">
                   <div className="grid h-[55px] min-w-[55px] w-[55px] place-items-center rounded-[100px] bg-[#FFE0E0] md:h-[70px] md:min-w-[70px] md:w-[70px]">
                     <img
-                      src={policyIcon}
+                      src="/img/policy-icon.svg"
                       alt=""
                       aria-hidden="true"
                       className="h-[28px] w-[28px] object-contain md:h-[36px] md:w-[36px]"
@@ -136,8 +127,7 @@ export function Resources() {
 
                 <DownloadBox
                   variant="danger"
-                  href={apmePdfUrl}
-                  downloadFileName="plagiarism-policy.pdf"
+                  href={TEMP_PDF_URL}
                   label="Download Plagiarism Policy"
                 />
               </div>
@@ -179,7 +169,7 @@ function SectionBlock({ title, children }: { title: string; children: ReactNode 
   )
 }
 
-function FileCard({ title, subtitle, pdfUrl, pdfFileName }: ResourceCard) {
+function FileCard({ title, subtitle, pdfUrl }: ResourceCard) {
   return (
     <article className="group hover-card flex flex-row items-center justify-between gap-[20px] rounded-[10px] border border-stroke bg-white px-[20px] py-[20px] md:px-[30px] md:py-[30px]">
       <div>
@@ -192,7 +182,6 @@ function FileCard({ title, subtitle, pdfUrl, pdfFileName }: ResourceCard) {
       </div>
       <DownloadBox
         href={pdfUrl}
-        downloadFileName={pdfFileName}
         label={`Download ${title}`}
       />
     </article>
@@ -202,12 +191,10 @@ function FileCard({ title, subtitle, pdfUrl, pdfFileName }: ResourceCard) {
 function DownloadBox({
   variant = 'default',
   href,
-  downloadFileName,
   label,
 }: {
   variant?: 'default' | 'danger'
   href: string
-  downloadFileName: string
   label: string
 }) {
   const boxClass =
@@ -223,7 +210,8 @@ function DownloadBox({
   return (
     <a
       href={href}
-      download={downloadFileName}
+      target="_blank"
+      rel="noreferrer"
       aria-label={label}
       className={[
         'grid h-[45px] w-[45px] shrink-0 place-items-center rounded-[6px]',

@@ -2,7 +2,6 @@ import { useState } from 'react'
 import Container from '../../common/Container'
 import DarkIconTitle from '../../common/DarkIconTitle'
 import { Pad } from '../../common/Pad'
-import advisoryTag from '../../../assets/img/advisory-tag.svg'
 
 export type CommitteePanel = {
   /** Short label for vertical tab */
@@ -96,7 +95,7 @@ function CommitteeHeadingBlock({
   return (
     <>
       <div className="mb-[30px] flex justify-center">
-        <DarkIconTitle iconSrc={advisoryTag}>
+        <DarkIconTitle iconSrc="/img/advisory-tag.svg">
           {panel.kicker}
         </DarkIconTitle>
       </div>

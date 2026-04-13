@@ -2,8 +2,6 @@ import Container from '../../common/Container'
 import { Pad } from '../../common/Pad'
 import { Reveal } from '../../common/Reveal'
 import DarkIconTitle from '../../common/DarkIconTitle'
-import community1 from '../../../assets/img/community1.webp'
-import locationIcon from '../../../assets/img/location.svg'
 
 
 const featureCards = [
@@ -83,9 +81,14 @@ const featureCards = [
   },
 ]
 
-export function WhyDubaiSection() {
+export function WhyDubaiSection({
+  className = '',
+}: {
+  /** Optional per-page overrides for section wrapper (bg/padding/etc). */
+  className?: string
+}) {
   return (
-    <section className="bg-light-bg py-[80px] max-[991px]:py-[50px]">
+    <section className={['bg-light-bg py-[80px] max-[991px]:py-[50px]', className].join(' ')}>
       <Pad>
         <Container>
           <div className="grid grid-cols-1 items-stretch gap-[30px] lg:grid-cols-2">
@@ -93,7 +96,7 @@ export function WhyDubaiSection() {
             <Reveal className="relative flex flex-col overflow-hidden rounded-[10px] bg-[#EAF2FF] col-span-1 min-h-[500px]">
               <div className="absolute inset-0">
                 <img
-                  src={community1}
+                  src="/img/community1.webp"
                   alt="Dubai Skyline"
                   className="h-full w-full object-cover object-bottom"
                   loading="lazy"
@@ -101,7 +104,7 @@ export function WhyDubaiSection() {
                 />
               </div>
               <div className="relative z-10 p-[50px] pb-0 max-[767px]:p-[30px] max-[767px]:pb-0">
-                <DarkIconTitle iconSrc={locationIcon}>The Host City</DarkIconTitle>
+                <DarkIconTitle iconSrc="/img/location.svg">The Host City</DarkIconTitle>
                 <h2 className="mt-[30px] font-heading text-[36px] font-bold leading-[46px] text-primary max-[767px]:text-[32px]">
                   Why <span className="text-secondary">Dubai?</span>
                 </h2>
