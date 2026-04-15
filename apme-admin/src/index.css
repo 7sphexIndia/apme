@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary-rgb: 11 31 59;
+    --secondary-rgb: 15 123 108;
+    --light-bg-rgb: 245 247 250;
+    --border-rgb: 231 242 241;
+    --body-text-rgb: 28 28 28;
+    --heading-font: 'Plus Jakarta Sans', sans-serif;
+    --body-font: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--body-font);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--heading-font);
+    font-weight: 700;
+  }
+}

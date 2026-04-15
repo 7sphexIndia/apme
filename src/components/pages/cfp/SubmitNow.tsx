@@ -5,7 +5,7 @@ import { Pad } from '../../common/Pad'
 
 export function SubmitNow() {
   return (
-    <section className="bg-light-bg py-[80px] max-[991px]:py-[60px]">
+    <section className="bg-light-bg py-[80px] max-[991px]:py-[50px]">
       <Pad>
         <Container>
           <div className="grid grid-cols-1 items-stretch gap-[30px] lg:grid-cols-[1fr_0.45fr] lg:gap-[60px]">

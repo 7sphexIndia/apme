@@ -60,7 +60,6 @@ export function Publication() {
         tagText="STAY UPDATED"
         heading="Don't Miss APME 2026"
         description="Get the latest news on publication deadlines, indexing updates, and conference schedules"
-        videoSrc="/video/cta-video.mp4"
         submitLabel="Subscribe"
       />
     </>

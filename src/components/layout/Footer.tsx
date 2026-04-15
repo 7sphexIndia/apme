@@ -81,7 +81,7 @@ export function Footer() {
     <footer className="bg-primary pt-[100px] text-white">
       <Pad>
         <Container>
-          <div className="grid grid-cols-1 gap-[60px] md:grid-cols-2 lg:grid-cols-4 lg:gap-[40px]">
+          <div className="grid grid-cols-1 gap-[60px] md:grid-cols-2 lg:grid-cols-[1fr_auto_auto_auto] lg:gap-[12vw]">
             {/* Logo and Intro Section */}
             <div className="flex flex-col">
               <Link to="/">

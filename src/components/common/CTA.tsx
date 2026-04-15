@@ -1,4 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { CTA_VIDEO_SRC } from '../../constants/videos'
+import { videoDebug } from '../../debug/videoConsole'
+import { isCtaVideoPrimed, markCtaVideoPrimed } from '../../session/videoPrimed'
 import Container from './Container'
 import DarkIconTitle from './DarkIconTitle'
 import { Pad } from './Pad'
@@ -17,8 +20,8 @@ type CTACommonProps = {
   tagText: string
   heading: ReactNode
   description: ReactNode
-  /** Background video import url */
-  videoSrc: string
+  /** Background video URL (defaults to shared CTA clip on Drive) */
+  videoSrc?: string
   overlayClassName?: string
   className?: string
 }
@@ -48,16 +51,21 @@ export default function CTA(props: CTAProps) {
     tagText,
     heading,
     description,
-    videoSrc,
-    /** Optional overlay override (defaults to 60% black) */
-    overlayClassName = 'bg-black/60',
+    videoSrc = CTA_VIDEO_SRC,
+    /** Optional overlay override (must stay translucent so video shows through) */
+    overlayClassName = 'bg-primary/70',
     /** Use for section spacing on pages */
     className = '',
   } = props
 
   const containerRef = useRef<HTMLDivElement | null>(null)
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
-  const [videoReady, setVideoReady] = useState(false)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(
+    () => typeof window !== 'undefined' && isCtaVideoPrimed(),
+  )
+  const [videoReady, setVideoReady] = useState(
+    () => typeof window !== 'undefined' && isCtaVideoPrimed(),
+  )
 
   const shouldSkipVideo = useMemo(() => {
     if (typeof window === 'undefined') return true
@@ -70,11 +78,28 @@ export default function CTA(props: CTAProps) {
   }, [])
 
   useEffect(() => {
+    const conn = typeof navigator !== 'undefined' ? (navigator as any).connection : undefined
+    videoDebug.log('CTA', 'policy check', {
+      src: videoSrc,
+      shouldSkipVideo,
+      reducedMotion: window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches,
+      saveData: conn?.saveData,
+      effectiveType: conn?.effectiveType,
+    })
+  }, [shouldSkipVideo, videoSrc])
+
+  useEffect(() => {
     if (shouldSkipVideo) return
+    if (isCtaVideoPrimed()) {
+      videoDebug.log('CTA', 'session primed → skip IO + idle gate')
+      setShouldLoadVideo(true)
+      return
+    }
     const el = containerRef.current
     if (!el) return
 
     if (typeof IntersectionObserver === 'undefined') {
+      videoDebug.log('CTA', 'IntersectionObserver missing → load video immediately')
       setShouldLoadVideo(true)
       return
     }
@@ -82,6 +107,10 @@ export default function CTA(props: CTAProps) {
     const obs = new IntersectionObserver(
       (entries) => {
         const entry = entries[0]
+        videoDebug.log('CTA', 'intersection', {
+          isIntersecting: entry?.isIntersecting,
+          intersectionRatio: entry?.intersectionRatio,
+        })
         if (!entry?.isIntersecting) return
 
         // Defer heavy media until the browser is idle.
@@ -90,8 +119,10 @@ export default function CTA(props: CTAProps) {
           | undefined
 
         if (ric) {
+          videoDebug.log('CTA', 'scheduling load via requestIdleCallback (timeout 1500ms)')
           ric(() => setShouldLoadVideo(true), { timeout: 1500 })
         } else {
+          videoDebug.log('CTA', 'scheduling load via setTimeout 300ms')
           setTimeout(() => setShouldLoadVideo(true), 300)
         }
         obs.disconnect()
@@ -103,6 +134,11 @@ export default function CTA(props: CTAProps) {
     return () => obs.disconnect()
   }, [shouldSkipVideo])
 
+  useEffect(() => {
+    if (!shouldLoadVideo || shouldSkipVideo) return
+    videoDebug.log('CTA', 'mounting <video>', { src: videoSrc })
+  }, [shouldLoadVideo, shouldSkipVideo, videoSrc])
+
   return (
     <section className={className}>
       <Pad>
@@ -111,12 +147,39 @@ export default function CTA(props: CTAProps) {
             <div className="absolute inset-0 z-0">
               {shouldLoadVideo && !shouldSkipVideo ? (
                 <video
+                  ref={videoRef}
                   autoPlay
                   muted
                   loop
                   playsInline
-                  preload="none"
-                  onLoadedData={() => setVideoReady(true)}
+                  preload={isCtaVideoPrimed() ? 'auto' : 'metadata'}
+                  onLoadStart={() => videoDebug.log('CTA', 'event: loadstart')}
+                  onLoadedMetadata={() =>
+                    videoDebug.log('CTA', 'event: loadedmetadata', {
+                      duration: videoRef.current?.duration,
+                      videoWidth: videoRef.current?.videoWidth,
+                    })
+                  }
+                  onLoadedData={() => {
+                    videoDebug.log('CTA', 'event: loadeddata → visible')
+                    markCtaVideoPrimed()
+                    setVideoReady(true)
+                  }}
+                  onCanPlay={() => videoDebug.log('CTA', 'event: canplay')}
+                  onPlaying={() => videoDebug.log('CTA', 'event: playing')}
+                  onWaiting={() => videoDebug.warn('CTA', 'event: waiting (buffering)')}
+                  onStalled={() => videoDebug.warn('CTA', 'event: stalled')}
+                  onError={() => {
+                    const v = videoRef.current
+                    const err = v?.error
+                    videoDebug.error('CTA', 'event: error', {
+                      code: err?.code,
+                      message: err?.message,
+                      networkState: v?.networkState,
+                      readyState: v?.readyState,
+                      currentSrc: v?.currentSrc,
+                    })
+                  }}
                   className={[
                     'absolute inset-0 h-full w-full object-cover transition-opacity duration-500',
                     videoReady ? 'opacity-100' : 'opacity-0',

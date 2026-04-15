@@ -72,7 +72,7 @@ const digitalSchedule = [
 
 export function SampleSchedule() {
   return (
-    <section className="bg-light-bg py-[100px] max-[991px]:py-[60px]">
+    <section className="bg-light-bg py-[80px] max-[991px]:py-[50px]">
       <Pad>
         <Container>
           <div className="grid grid-cols-1 gap-[60px] lg:grid-cols-[0.7fr_1fr]">
@@ -82,7 +82,7 @@ export function SampleSchedule() {
                 <DarkIconTitle iconSrc="/img/schedule.svg">SCHEDULE IN DEVELOPMENT</DarkIconTitle>
               </Reveal>
               <Reveal className="mb-[44px]">
-                <h2 className="font-heading text-[40px] font-bold leading-tight text-primary max-[991px]:text-[32px]">
+                <h2 className="font-heading text-[36px] leading-[46px] font-bold text-primary max-[991px]:text-[32px]">
                   Sample Daily <span className="text-secondary">Schedule</span>
                 </h2>
               </Reveal>

@@ -87,6 +87,11 @@
   .red-hover-card.hover-card::after{
     background: rgb(255, 0, 0);
   }
+  
+  /* Speakers page: use primary navy for the bottom hover line (scoped via extra class). */
+  .speakers-hover-card.hover-card::after {
+    background: #0b1f3b;
+  }
 
   .hover-card:hover {
     transform: translate3d(0, -6px, 0);

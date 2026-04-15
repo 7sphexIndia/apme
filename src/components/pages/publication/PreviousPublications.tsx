@@ -127,7 +127,7 @@ export function PreviousPublications() {
   const currentYearData = PUBLICATIONS_DATA[activeYear]
 
   return (
-    <section className="bg-light-bg py-[60px] md:py-[100px]">
+    <section className="bg-light-bg py-[50px] md:py-[80px]">
       <Pad>
         <Container>
           <div className="flex flex-col items-center">

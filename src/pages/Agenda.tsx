@@ -37,7 +37,6 @@ export function Agenda() {
         tagText="Stay Informed"
         heading="Don't Miss Any Updates"
         description="Subscribe to receive the detailed agenda as soon as it's released, along with speaker announcements and conference highlights."
-        videoSrc="/video/cta-video.mp4"
         primaryButton={{ label: 'Subscribe for Updates', to: '/contact' }}
         secondaryButton={{ label: 'View Call for Papers', to: '/contact', appearance: 'solidSecondary' }}
       />

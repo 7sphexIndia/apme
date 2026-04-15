@@ -1,4 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { HERO_VIDEO_SRC } from '../../../constants/videos'
+import { videoDebug } from '../../../debug/videoConsole'
+import { isHeroVideoPrimed, markHeroVideoPrimed } from '../../../session/videoPrimed'
 import { ButtonLink } from '../../common/ButtonLink'
 import Container from '../../common/Container'
 import { Pad } from '../../common/Pad'
@@ -17,8 +20,13 @@ export function HeroSection({
   badgeIconSize?: number
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null)
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
-  const [videoReady, setVideoReady] = useState(false)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(
+    () => typeof window !== 'undefined' && isHeroVideoPrimed(),
+  )
+  const [videoReady, setVideoReady] = useState(
+    () => typeof window !== 'undefined' && isHeroVideoPrimed(),
+  )
   const [startTicker, setStartTicker] = useState(false)
 
   const shouldSkipVideo = useMemo(() => {
@@ -33,12 +41,34 @@ export function HeroSection({
   }, [])
 
   useEffect(() => {
+    const conn = typeof navigator !== 'undefined' ? (navigator as any).connection : undefined
+    videoDebug.log('Hero', 'policy check', {
+      src: HERO_VIDEO_SRC,
+      shouldSkipVideo,
+      reducedMotion: window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches,
+      saveData: conn?.saveData,
+      effectiveType: conn?.effectiveType,
+      hint: shouldSkipVideo
+        ? 'Video skipped by policy (no element mounted).'
+        : isHeroVideoPrimed()
+          ? 'Video allowed; session primed (no IO/idle wait).'
+          : 'Video allowed; waiting for intersection + idle.',
+    })
+  }, [shouldSkipVideo])
+
+  useEffect(() => {
     if (shouldSkipVideo) return
+    if (isHeroVideoPrimed()) {
+      videoDebug.log('Hero', 'session primed → skip IO + idle gate')
+      setShouldLoadVideo(true)
+      return
+    }
     const el = containerRef.current
     if (!el) return
 
     // If IO isn't available, load right away.
     if (typeof IntersectionObserver === 'undefined') {
+      videoDebug.log('Hero', 'IntersectionObserver missing → load video immediately')
       setShouldLoadVideo(true)
       return
     }
@@ -46,14 +76,20 @@ export function HeroSection({
     const obs = new IntersectionObserver(
       (entries) => {
         const entry = entries[0]
+        videoDebug.log('Hero', 'intersection', {
+          isIntersecting: entry?.isIntersecting,
+          intersectionRatio: entry?.intersectionRatio,
+        })
         if (entry?.isIntersecting) {
           // Defer heavy media until the browser is idle.
           const ric = (window as any).requestIdleCallback as
             | ((cb: () => void, opts?: { timeout: number }) => number)
             | undefined
           if (ric) {
+            videoDebug.log('Hero', 'scheduling load via requestIdleCallback (timeout 1500ms)')
             ric(() => setShouldLoadVideo(true), { timeout: 1500 })
           } else {
+            videoDebug.log('Hero', 'scheduling load via setTimeout 300ms')
             setTimeout(() => setShouldLoadVideo(true), 300)
           }
           obs.disconnect()
@@ -66,10 +102,16 @@ export function HeroSection({
     if (videoElement) {
       obs.observe(videoElement)
     } else {
+      videoDebug.log('Hero', 'observing container (video not in DOM yet)')
       obs.observe(el)
     }
     return () => obs.disconnect()
   }, [shouldSkipVideo])
+
+  useEffect(() => {
+    if (!shouldLoadVideo) return
+    videoDebug.log('Hero', 'mounting <video>', { src: HERO_VIDEO_SRC })
+  }, [shouldLoadVideo])
 
   useEffect(() => {
     // Speed Index is sensitive to above-the-fold visual changes.
@@ -103,18 +145,48 @@ export function HeroSection({
         >
           {shouldLoadVideo ? (
             <video
+              ref={videoRef}
               autoPlay
               muted
               loop
               playsInline
-              preload="none"
-              onLoadedData={() => setVideoReady(true)}
+              preload={isHeroVideoPrimed() ? 'auto' : 'metadata'}
+              onLoadStart={() => videoDebug.log('Hero', 'event: loadstart')}
+              onLoadedMetadata={() =>
+                videoDebug.log('Hero', 'event: loadedmetadata', {
+                  duration: videoRef.current?.duration,
+                  videoWidth: videoRef.current?.videoWidth,
+                  videoHeight: videoRef.current?.videoHeight,
+                })
+              }
+              onLoadedData={() => {
+                videoDebug.log('Hero', 'event: loadeddata → visible')
+                markHeroVideoPrimed()
+                setVideoReady(true)
+              }}
+              onCanPlay={() => videoDebug.log('Hero', 'event: canplay')}
+              onPlaying={() => videoDebug.log('Hero', 'event: playing')}
+              onWaiting={() => videoDebug.warn('Hero', 'event: waiting (buffering)')}
+              onStalled={() => videoDebug.warn('Hero', 'event: stalled')}
+              onError={() => {
+                const v = videoRef.current
+                const err = v?.error
+                videoDebug.error('Hero', 'event: error', {
+                  code: err?.code,
+                  message: err?.message,
+                  networkState: v?.networkState,
+                  readyState: v?.readyState,
+                  currentSrc: v?.currentSrc,
+                  hint:
+                    'If currentSrc is Google Drive, browsers block it (CORP). Use /video/… on your domain or dev proxy.',
+                })
+              }}
               className={[
                 'absolute inset-0 h-full w-full object-cover transition-opacity duration-500',
                 videoReady ? 'opacity-100' : 'opacity-0',
               ].join(' ')}
             >
-              <source src="/video/hero-video.mp4" type="video/mp4" />
+              <source src={HERO_VIDEO_SRC} type="video/mp4" />
             </video>
           ) : null}
         </div>

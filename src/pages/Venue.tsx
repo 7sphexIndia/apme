@@ -38,7 +38,6 @@ export function Venue() {
         className="bg-white py-[100px]"
         variant="double"
         tagText="Ready to Join Us?"
-        videoSrc="/video/cta-video.mp4"
         heading="Experience Dubai in November 2026"
         description="Perfect weather, world-class facilities, and unforgettable experiences await you at APME 2026."
         primaryButton={{ label: 'Register Now', to: '/contact' }}

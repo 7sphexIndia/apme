@@ -1,4 +1,5 @@
 import { PageHero } from '../components/common/PageHero'
+import { SpeakersSections } from '../components/pages/speakers/SpeakersSections'
 
 export function Speakers() {
   return (
@@ -25,6 +26,7 @@ export function Speakers() {
           </>
         }
       />
+      <SpeakersSections />
     </>
   )
 }

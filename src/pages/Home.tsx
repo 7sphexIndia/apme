@@ -61,7 +61,6 @@ export function Home() {
         tagText="STAY UPDATED"
         heading="Don't Miss APME 2026"
         description="Get speaker announcements, CFP reminders, and exclusive conference updates directly in your inbox."
-        videoSrc="/video/cta-video.mp4"
         submitLabel="Subscribe"
       />
     </>

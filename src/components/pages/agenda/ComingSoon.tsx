@@ -67,7 +67,7 @@ export function ComingSoon() {
                 <DarkIconTitle iconSrc="/img/schedule.svg">TENTATIVE STRUCTURE</DarkIconTitle>
                 </Reveal>
                 <Reveal className="mb-[44px]">
-                  <h2 className="font-heading text-[40px] font-bold leading-tight text-primary text-[32px]">
+                  <h2 className="font-heading text-[36px] leading-[46px] font-bold text-primary max-[991px]:text-[32px]">
                   Coming<span className="text-secondary"> Soon</span>
                   </h2>
               </Reveal>

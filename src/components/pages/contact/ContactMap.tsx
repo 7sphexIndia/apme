@@ -9,37 +9,38 @@ export function ContactMap() {
       <Pad>
         <Container>
           {/* Header */}
-          <div className="mb-[60px] flex flex-col items-center text-center max-[991px]:mb-[40px]">
-            <Reveal className="mb-6">
+          <div className="mb-[64px] flex flex-col items-center text-center max-[991px]:mb-[40px]">
+            <Reveal className="mb-[30px]">
               <DarkIconTitle iconSrc="/img/location.svg">CONFERENCE VENUE</DarkIconTitle>
             </Reveal>
             <Reveal>
-              <h2 className="font-heading text-[48px] font-bold leading-tight text-primary max-[991px]:text-[36px]">
+              <h2 className="font-heading text-[36px] leading-[46px] font-bold text-primary max-[991px]:text-[32px]">
                 Find Us <span className="text-secondary">in Dubai</span>
               </h2>
             </Reveal>
           </div>
 
           {/* Map Area */}
-          <Reveal className="mb-[60px]">
-            <div className="relative h-[500px] w-full overflow-hidden rounded-[20px] border border-stroke shadow-sm max-[991px]:h-[350px]">
+          <Reveal className="mb-[40px]">
+            <div className="relative h-[500px] w-full overflow-hidden rounded-[10px] border border-stroke shadow-sm max-[991px]:h-[350px]">
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d231280.41390533614!2d55.06233704355974!3d25.076242067619972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sin!4v1776078672231!5m2!1sen!2sin" width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
             </div>
           </Reveal>
 
           {/* Info Grid */}
-          <div className="grid grid-cols-1 gap-[30px] md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-[20px] lg:grid-cols-3 align-items-stretch">
             {/* Conference Venue Card */}
             <Reveal delay={100}>
-              <div className="flex items-center gap-6 rounded-[20px] bg-light-bg p-8 transition-all hover:bg-white hover:shadow-md border border-transparent hover:border-stroke">
-                <div className="flex h-[64px] w-[64px] min-w-[64px] items-center justify-center rounded-full bg-white text-secondary">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 21V10H14V21M10 21H3V8L12 3L21 8V21H14M10 21H14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <div className="flex items-center gap-3 rounded-[10px] bg-light-bg p-[20px] md:py-[30px] md:px-[26px] transition-all hover:bg-white border border-stroke hover:border-primary/50 h-full">
+                <div className="flex h-[80px] w-[80px] min-w-[80px] items-center justify-center rounded-full bg-white border border-stroke text-secondary">
+                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.5 12.1882C7.5 11.6707 7.91906 11.2507 8.4375 11.2507H14.0625C14.5809 11.2507 15 11.6707 15 12.1882C15 12.7057 14.5809 13.1257 14.0625 13.1257H8.4375C7.91906 13.1257 7.5 12.7057 7.5 12.1882ZM14.0625 15.0007H8.4375C7.91906 15.0007 7.5 15.4207 7.5 15.9382C7.5 16.4557 7.91906 16.8757 8.4375 16.8757H14.0625C14.5809 16.8757 15 16.4557 15 15.9382C15 15.4207 14.5809 15.0007 14.0625 15.0007ZM14.0625 18.7507H8.4375C7.91906 18.7507 7.5 19.1707 7.5 19.6882C7.5 20.2057 7.91906 20.6257 8.4375 20.6257H14.0625C14.5809 20.6257 15 20.2057 15 19.6882C15 19.1707 14.5809 18.7507 14.0625 18.7507ZM14.0625 22.5007H8.4375C7.91906 22.5007 7.5 22.9207 7.5 23.4382C7.5 23.9557 7.91906 24.3757 8.4375 24.3757H14.0625C14.5809 24.3757 15 23.9557 15 23.4382C15 22.9207 14.5809 22.5007 14.0625 22.5007ZM28.125 27.1882C28.125 27.7057 27.7059 28.1257 27.1875 28.1257H2.8125C2.29406 28.1257 1.875 27.7057 1.875 27.1882C1.875 26.6707 2.29406 26.2507 2.8125 26.2507H3.75V9.01757C3.75 8.30226 4.1475 7.66007 4.78594 7.34039L16.0359 1.71539C16.6228 1.42289 17.3034 1.45289 17.8603 1.79695C18.4172 2.14101 18.7491 2.73726 18.7491 3.39257V10.3132H24.3741C25.4081 10.3132 26.2491 11.1541 26.2491 12.1882V26.2507H27.1866C27.705 26.2507 28.125 26.6707 28.125 27.1882ZM18.75 12.1882V26.2507H24.375V12.1882H18.75ZM5.625 26.2507H16.875V3.39257L5.625 9.01757V26.2507Z" fill="#0F7B6C" />
                   </svg>
+
                 </div>
                 <div>
-                  <h3 className="text-[20px] font-bold text-primary">Conference Venue</h3>
-                  <p className="mt-1 text-[15px] leading-relaxed text-body">
+                  <h3 className="text-[22px] font-bold text-primary">Conference Venue</h3>
+                  <p className="mt-4 text-[16px] text-body">
                     Dubai International Convention Centre <br />
                     Sheikh Zayed Road, Dubai, UAE
                   </p>
@@ -49,16 +50,24 @@ export function ContactMap() {
 
             {/* Office Hours Card */}
             <Reveal delay={200}>
-              <div className="flex items-center gap-6 rounded-[20px] bg-light-bg p-8 transition-all hover:bg-white hover:shadow-md border border-transparent hover:border-stroke">
-                <div className="flex h-[64px] w-[64px] min-w-[64px] items-center justify-center rounded-full bg-white text-secondary">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
-                    <path d="M12 6V12L16 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <div className="flex items-center gap-6 rounded-[10px] bg-light-bg p-[20px] md:py-[30px] md:px-[26px] transition-all hover:bg-white border border-stroke hover:border-primary/50 h-full">
+                <div className="flex h-[80px] w-[80px] min-w-[80px] items-center justify-center rounded-full bg-white border border-stroke text-secondary">
+                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_2864_12143)">
+                      <path d="M20.3446 17.6503L16.1617 14.5132V8.12285C16.1617 7.48031 15.6423 6.96094 14.9998 6.96094C14.3573 6.96094 13.8379 7.48031 13.8379 8.12285V15.0942C13.8379 15.4602 14.0099 15.8053 14.3027 16.0238L18.9502 19.5094C19.1593 19.6663 19.4034 19.7418 19.6462 19.7418C20.0005 19.7418 20.3491 19.5826 20.5769 19.2759C20.9627 18.7634 20.8581 18.0349 20.3446 17.6503Z" fill="#0F7B6C" />
+                      <path d="M15 0C6.7285 0 0 6.7285 0 15C0 23.2715 6.7285 30 15 30C23.2715 30 30 23.2715 30 15C30 6.7285 23.2715 0 15 0ZM15 27.6762C8.01123 27.6762 2.32377 21.9888 2.32377 15C2.32377 8.01123 8.01123 2.32377 15 2.32377C21.9899 2.32377 27.6762 8.01123 27.6762 15C27.6762 21.9888 21.9888 27.6762 15 27.6762Z" fill="#0F7B6C" />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_2864_12143">
+                        <rect width="30" height="30" fill="white" />
+                      </clipPath>
+                    </defs>
                   </svg>
+
                 </div>
                 <div>
-                  <h3 className="text-[20px] font-bold text-primary">Office Hours</h3>
-                  <p className="mt-1 text-[15px] leading-relaxed text-body">
+                  <h3 className="text-[22px] font-bold text-primary">Office Hours</h3>
+                  <p className="mt-4 text-[16px] text-body">
                     Monday - Friday: 9:00 AM - 6:00 PM GST <br />
                     Saturday - Sunday: Closed
                   </p>
@@ -68,25 +77,31 @@ export function ContactMap() {
 
             {/* Get Directions Card */}
             <Reveal delay={300}>
-              <div className="flex items-center gap-6 rounded-[20px] bg-light-bg p-8 transition-all hover:bg-white hover:shadow-md border border-transparent hover:border-stroke">
-                <div className="flex h-[64px] w-[64px] min-w-[64px] items-center justify-center rounded-full bg-white text-secondary">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
-                    <path d="M2.00012 12H22.0001" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M12 2.00012C14.5013 4.73847 15.9228 8.29215 16 12.0001C15.9228 15.7081 14.5013 19.2618 12 22.0001C9.4988 19.2618 8.07725 15.7081 8.00012 12.0001C8.07725 8.29215 9.4988 4.73847 12 2.00012Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <div className="flex items-center gap-6 rounded-[10px] bg-light-bg p-[20px] md:py-[30px] md:px-[26px] transition-all hover:bg-white border border-stroke hover:border-primary/50 h-full">
+                <div className="flex h-[80px] w-[80px] min-w-[80px] items-center justify-center rounded-full bg-white border border-stroke text-secondary">
+                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_2864_12156)">
+                      <path d="M15.0053 1.60402e-07C9.00344 -0.000874657 3.57907 3.57669 1.21675 9.09411L1.02978 9.15609L1.10227 9.37355C-2.00808 17.0448 1.68921 25.7851 9.36049 28.8954C11.1522 29.6219 13.0675 29.9948 15.0009 29.9938C23.2834 29.995 29.9987 23.2817 30 14.9991C30.0012 6.7166 23.2879 0.00118741 15.0053 1.60402e-07ZM26.7687 22.5581L25.9986 21.7885V19.9958C25.9995 19.9185 25.9823 19.842 25.9486 19.7724L23.999 15.8787V13.9971C23.999 13.83 23.9156 13.6739 23.7765 13.5812L22.2769 12.5814C22.1593 12.5029 22.014 12.4778 21.8769 12.5124L20.0403 12.9713L16.9555 11.6476L16.5311 8.67419L17.7073 7.49844H20.2323L21.0821 8.77567C21.1588 8.89052 21.2798 8.96857 21.416 8.99113L24.4154 9.49102C24.4958 9.50452 24.5781 9.49796 24.6554 9.47203L27.4178 8.55122C29.7347 12.9975 29.4869 18.3452 26.7687 22.5581ZM24.7069 4.92597L23.894 5.46786L21.628 5.01446L20.1578 4.52506C20.0678 4.4945 19.971 4.49063 19.8789 4.51406L18.0202 4.97846L17.2054 4.70702L17.8093 3.49927H19.4999C19.5775 3.49933 19.654 3.4814 19.7234 3.44678L21.453 2.58196C22.6442 3.20371 23.7399 3.99304 24.7069 4.92597ZM9.52551 2.11606L10.7253 2.91589C10.7843 2.95513 10.8509 2.98138 10.9207 2.99288L13.3432 3.39679L13.1068 4.10415L11.8445 4.52556C11.7315 4.56317 11.6356 4.63991 11.5741 4.74201L10.1384 7.13451L7.83237 8.51822L4.43308 9.00362C4.18669 9.03843 4.00348 9.2492 4.00317 9.49802V10.9977C4.00317 11.1303 4.0559 11.2574 4.14963 11.3511L5.00296 12.2045V13.0633L2.92339 11.6766L2.16905 9.41354C3.60425 6.13422 6.23476 3.52477 9.52551 2.11606ZM8.10231 18.5061L5.84278 18.0537L5.00296 16.3786V15.2038L6.86557 13.3412L7.55492 14.7204C7.63959 14.8899 7.81287 14.9969 8.00233 14.9969H11.2187L12.5729 17.2539C12.6632 17.4043 12.8258 17.4963 13.0013 17.4964H14.391L14.0411 19.2495L12.1485 21.1421C12.0546 21.2358 12.0017 21.3629 12.0015 21.4955V22.7453L10.2019 24.095C10.076 24.1894 10.0019 24.3376 10.0019 24.4949V26.3005L9.38004 26.0946L8.50223 23.899V18.996C8.50229 18.7585 8.33508 18.5536 8.10231 18.5061ZM6.59962 26.1909C1.88629 22.6548 -0.106979 16.5451 1.61416 10.9097L2.02958 12.1555C2.06457 12.2609 2.13368 12.3517 2.22604 12.4134L4.71802 14.0746L4.14963 14.6434C4.0559 14.7372 4.00317 14.8643 4.00317 14.9969V16.4966C4.0031 16.5741 4.02104 16.6506 4.05565 16.72L5.05545 18.7196C5.12468 18.8577 5.25384 18.9561 5.40537 18.986L7.50494 19.4055V23.995C7.50487 24.0585 7.51693 24.1215 7.54043 24.1805L8.54022 26.6799C8.59496 26.8165 8.70706 26.922 8.84666 26.9684L10.3463 27.4683C10.3965 27.4853 10.4489 27.494 10.5018 27.4943C10.7779 27.4943 11.0017 27.2704 11.0017 26.9944V24.7448L12.8013 23.3951C12.9272 23.3007 13.0013 23.1526 13.0013 22.9952V21.7025L14.8544 19.8494C14.9241 19.7796 14.9716 19.6906 14.9909 19.5939L15.4908 17.0944C15.5449 16.8237 15.3693 16.5604 15.0985 16.5062C15.0664 16.4998 15.0337 16.4966 15.0009 16.4966H13.2842L11.93 14.2395C11.8397 14.0891 11.6771 13.9971 11.5016 13.9971H8.31127L7.45245 12.2739C7.38052 12.1301 7.2438 12.0296 7.08502 12.004C6.92631 11.9766 6.76428 12.0289 6.65161 12.144L6.00275 12.7903V11.9975C6.00275 11.8649 5.95001 11.7378 5.85628 11.6441L5.00296 10.7908V9.93143L8.07332 9.49302C8.13924 9.48346 8.20267 9.46084 8.25978 9.42654L10.7593 7.92685C10.8294 7.88473 10.8881 7.82599 10.9302 7.75588L12.3349 5.41487L13.6592 4.97296C13.8087 4.92391 13.926 4.80662 13.9751 4.65703L14.475 3.15734C14.5616 2.89521 14.4193 2.61246 14.1572 2.52585C14.133 2.51785 14.1082 2.51173 14.0831 2.50748L11.1897 2.02508L10.6813 1.68615C13.8271 0.662237 17.2342 0.788961 20.2953 2.04357L19.382 2.49948H17.5004C17.31 2.49842 17.1356 2.60564 17.0504 2.77592L16.0507 4.77551C15.9275 5.02258 16.0279 5.32277 16.275 5.44593C16.296 5.45643 16.3178 5.46542 16.3401 5.47286L17.8398 5.97276C17.9298 6.00331 18.0266 6.00719 18.1187 5.98375L19.9773 5.51935L21.3391 5.97276C21.3585 5.97975 21.3786 5.98513 21.399 5.98875L23.8985 6.48865C24.0285 6.51514 24.1637 6.48852 24.2739 6.41466L25.4117 5.65582C25.9716 6.2795 26.4749 6.95186 26.9154 7.6649L24.4559 8.48473L21.793 8.04082L20.9131 6.7211C20.8209 6.58282 20.6659 6.49946 20.4997 6.49865H17.5004C17.3678 6.49865 17.2407 6.55139 17.1469 6.64512L15.6472 8.1448C15.5359 8.25609 15.4835 8.41337 15.5058 8.56921L16.0057 12.0685C16.0308 12.2415 16.1446 12.3888 16.3056 12.4569L19.8049 13.9566C19.9051 14 20.017 14.009 20.1228 13.9821L21.9079 13.5357L22.9992 14.2645V15.9967C22.9983 16.074 23.0155 16.1505 23.0492 16.2201L24.9988 20.1138V21.9954C24.9988 22.128 25.0515 22.2551 25.1453 22.3488L26.191 23.3951C21.5531 29.5772 12.7816 30.8289 6.59962 26.1909Z" fill="#0F7B6C" />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_2864_12156">
+                        <rect width="30" height="30" fill="white" />
+                      </clipPath>
+                    </defs>
                   </svg>
+
                 </div>
                 <div>
-                  <h3 className="text-[20px] font-bold text-primary">Get Directions</h3>
+                  <h3 className="text-[22px] font-bold text-primary">Get Directions</h3>
                   <a
                     href="https://maps.app.goo.gl/3fX3f3f3f3f3f3f3f"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-1 inline-flex items-center gap-2 text-[15px] font-semibold text-secondary hover:underline"
+                    className="mt-4 inline-flex items-center gap-2 text-[16px] font-semibold text-secondary hover:underline"
                   >
                     Open in Google Maps
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </a>
                 </div>

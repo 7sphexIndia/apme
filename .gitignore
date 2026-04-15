@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# PHP backend (local secrets & uploads)
+apme-backend/config.php
+apme-backend/var/
+apme-backend/uploads/*
+!apme-backend/uploads/.gitkeep
+!apme-backend/uploads/.htaccess

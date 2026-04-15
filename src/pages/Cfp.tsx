@@ -69,7 +69,6 @@ export function Cfp() {
         tagText="READY TO CONTRIBUTE?"
         heading="Submit Your Research Today"
         description="Join leading researchers from around the world at APME 2026. Share your innovative work and connect with the scientific community."
-        videoSrc="/video/cta-video.mp4"
         button={{ label: 'Submit Paper Now', to: '/contact' 
           
         }}

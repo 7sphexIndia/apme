@@ -23,7 +23,7 @@ function AppLayout() {
       </Suspense>
       <Footer />
     </>
-  ) 
+  )
 }
 
 function App() {
